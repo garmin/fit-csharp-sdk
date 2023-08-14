@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0;net46</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>Garmin.FIT.Sdk</PackageId>
+    <Version>0.115.0</Version>
+    <Authors>Garmin International, Inc.</Authors>
+    <Company>Garmin International, Inc.</Company>
+    <PackageDescription>FIT C# SDK</PackageDescription>
+    <PackageProjectUrl>https://developer.garmin.com/fit/overview/</PackageProjectUrl>
+    <PackageTags>fit fitsdk garmin</PackageTags>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="LICENSE.txt" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
+  <ItemGroup>
+  <Content Remove="Cookbook\**" />
+  <Compile Remove="Cookbook\**" />
+  <EmbeddedResource Remove="Cookbook\**" />
+  <None Remove="Cookbook\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+  <Content Remove="Examples\**" />
+  <Compile Remove="Examples\**" />
+  <EmbeddedResource Remove="Examples\**" />
+  <None Remove="Examples\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+  <Content Remove="plugins\**" />
+  <Compile Remove="plugins\**" />
+  <EmbeddedResource Remove="plugins\**" />
+  <None Remove="plugins\**" />
+  </ItemGroup>
+
+</Project>
