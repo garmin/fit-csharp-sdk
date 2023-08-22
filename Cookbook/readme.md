@@ -4,7 +4,7 @@ The FIT SDK Cookbook contains examples of using the FIT SDK to solve real-world 
 
 The example projects provided in the cookbook are C# console apps written with .NET Core 3.1. All example projects in the cookbook use Visual Studio Code and can be compiled and executed on Windows, Mac, and Linux systems. The source code for the recipes is included with the FIT SDK and is located at /path/to/fit/sdk/cs/cookbook. The recipes are written in C#, but the concepts can be applied to the Java and C++ versions of the FIT SDK.
 
-The Cookbook projects reference the precompiled Dynastream.Fit.Portable.dll that is included with the FIT SDK. If needed, the C# FIT SDK source files can be directly included in the projects.
+The Cookbook projects reference the FIT C# SDK [Garmin.FIT.Sdk](https://www.nuget.org/packages/Garmin.FIT.Sdk) available on NuGet. If needed, the FIT C# SDK source files can be directly included in the projects.
 
 ## Prerequisites
 
