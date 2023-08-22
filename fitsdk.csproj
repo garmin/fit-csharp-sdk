@@ -5,7 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Garmin.FIT.Sdk</PackageId>
-    <Version>21.120.1</Version>
+    <Version>21.120.2</Version>
     <Authors>Garmin International, Inc.</Authors>
     <Company>Garmin International, Inc.</Company>
     <PackageDescription>FIT C# SDK</PackageDescription>
