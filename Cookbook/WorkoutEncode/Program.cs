@@ -21,10 +21,17 @@ namespace WorkoutEncode
     {
         static void Main(string[] args)
         {
-            CreateBikeTempoWorkout();
-            CreateRun800RepeatsWorkout();
-            CreateCustomTargetValuesWorkout();
-            CreatePoolSwimWorkout();
+            try
+            {
+                CreateBikeTempoWorkout();
+                CreateRun800RepeatsWorkout();
+                CreateCustomTargetValuesWorkout();
+                CreatePoolSwimWorkout();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception {ex}");
+            }
         }
 
         static void CreateBikeTempoWorkout()
