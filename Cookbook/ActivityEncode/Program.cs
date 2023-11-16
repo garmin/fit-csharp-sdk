@@ -20,9 +20,17 @@ namespace ActivityEncode
     {
         static void Main(string[] args)
         {
-            CreateTimeBasedActivity();
-            CreateLapSwimActivity();
+            try
+            {
+                CreateTimeBasedActivity();
+                CreateLapSwimActivity();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception {ex}");
+            }
         }
+        
         static public void CreateTimeBasedActivity()
         {
             const double TwoPI = Math.PI * 2.0;

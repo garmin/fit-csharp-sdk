@@ -22,7 +22,14 @@ namespace CourseEncode
 
         static void Main(string[] args)
         {
-            EncodeCourse();
+            try
+            {
+                EncodeCourse();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception {ex}");
+            }
         }
 
         public static void EncodeCourse()
