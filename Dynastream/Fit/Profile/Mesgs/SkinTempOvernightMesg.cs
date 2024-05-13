@@ -22,32 +22,32 @@ using System.Linq;
 namespace Dynastream.Fit
 {
     /// <summary>
-    /// Implements the DeviceAuxBatteryInfo profile message.
+    /// Implements the SkinTempOvernight profile message.
     /// </summary>
-    public class DeviceAuxBatteryInfoMesg : Mesg
+    public class SkinTempOvernightMesg : Mesg
     {
         #region Fields
         #endregion
 
         /// <summary>
-        /// Field Numbers for <see cref="DeviceAuxBatteryInfoMesg"/>
+        /// Field Numbers for <see cref="SkinTempOvernightMesg"/>
         /// </summary>
         public sealed class FieldDefNum
         {
             public const byte Timestamp = 253;
-            public const byte DeviceIndex = 0;
-            public const byte BatteryVoltage = 1;
-            public const byte BatteryStatus = 2;
-            public const byte BatteryIdentifier = 3;
+            public const byte LocalTimestamp = 0;
+            public const byte AverageDeviation = 1;
+            public const byte Average7DayDeviation = 2;
+            public const byte NightlyValue = 4;
             public const byte Invalid = Fit.FieldNumInvalid;
         }
 
         #region Constructors
-        public DeviceAuxBatteryInfoMesg() : base(Profile.GetMesg(MesgNum.DeviceAuxBatteryInfo))
+        public SkinTempOvernightMesg() : base(Profile.GetMesg(MesgNum.SkinTempOvernight))
         {
         }
 
-        public DeviceAuxBatteryInfoMesg(Mesg mesg) : base(mesg)
+        public SkinTempOvernightMesg(Mesg mesg) : base(mesg)
         {
         }
         #endregion // Constructors
@@ -77,9 +77,9 @@ namespace Dynastream.Fit
         }
         
         ///<summary>
-        /// Retrieves the DeviceIndex field</summary>
-        /// <returns>Returns nullable byte representing the DeviceIndex field</returns>
-        public byte? GetDeviceIndex()
+        /// Retrieves the LocalTimestamp field</summary>
+        /// <returns>Returns nullable uint representing the LocalTimestamp field</returns>
+        public uint? GetLocalTimestamp()
         {
             Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
             if(val == null)
@@ -87,23 +87,23 @@ namespace Dynastream.Fit
                 return null;
             }
 
-            return (Convert.ToByte(val));
+            return (Convert.ToUInt32(val));
             
         }
 
         /// <summary>
-        /// Set DeviceIndex field</summary>
-        /// <param name="deviceIndex_">Nullable field value to be set</param>
-        public void SetDeviceIndex(byte? deviceIndex_)
+        /// Set LocalTimestamp field</summary>
+        /// <param name="localTimestamp_">Nullable field value to be set</param>
+        public void SetLocalTimestamp(uint? localTimestamp_)
         {
-            SetFieldValue(0, 0, deviceIndex_, Fit.SubfieldIndexMainField);
+            SetFieldValue(0, 0, localTimestamp_, Fit.SubfieldIndexMainField);
         }
         
         ///<summary>
-        /// Retrieves the BatteryVoltage field
-        /// Units: V</summary>
-        /// <returns>Returns nullable float representing the BatteryVoltage field</returns>
-        public float? GetBatteryVoltage()
+        /// Retrieves the AverageDeviation field
+        /// Comment: The average overnight deviation from baseline temperature in degrees C</summary>
+        /// <returns>Returns nullable float representing the AverageDeviation field</returns>
+        public float? GetAverageDeviation()
         {
             Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
             if(val == null)
@@ -116,18 +116,19 @@ namespace Dynastream.Fit
         }
 
         /// <summary>
-        /// Set BatteryVoltage field
-        /// Units: V</summary>
-        /// <param name="batteryVoltage_">Nullable field value to be set</param>
-        public void SetBatteryVoltage(float? batteryVoltage_)
+        /// Set AverageDeviation field
+        /// Comment: The average overnight deviation from baseline temperature in degrees C</summary>
+        /// <param name="averageDeviation_">Nullable field value to be set</param>
+        public void SetAverageDeviation(float? averageDeviation_)
         {
-            SetFieldValue(1, 0, batteryVoltage_, Fit.SubfieldIndexMainField);
+            SetFieldValue(1, 0, averageDeviation_, Fit.SubfieldIndexMainField);
         }
         
         ///<summary>
-        /// Retrieves the BatteryStatus field</summary>
-        /// <returns>Returns nullable byte representing the BatteryStatus field</returns>
-        public byte? GetBatteryStatus()
+        /// Retrieves the Average7DayDeviation field
+        /// Comment: The average 7 day overnight deviation from baseline temperature in degrees C</summary>
+        /// <returns>Returns nullable float representing the Average7DayDeviation field</returns>
+        public float? GetAverage7DayDeviation()
         {
             Object val = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
             if(val == null)
@@ -135,39 +136,42 @@ namespace Dynastream.Fit
                 return null;
             }
 
-            return (Convert.ToByte(val));
+            return (Convert.ToSingle(val));
             
         }
 
         /// <summary>
-        /// Set BatteryStatus field</summary>
-        /// <param name="batteryStatus_">Nullable field value to be set</param>
-        public void SetBatteryStatus(byte? batteryStatus_)
+        /// Set Average7DayDeviation field
+        /// Comment: The average 7 day overnight deviation from baseline temperature in degrees C</summary>
+        /// <param name="average7DayDeviation_">Nullable field value to be set</param>
+        public void SetAverage7DayDeviation(float? average7DayDeviation_)
         {
-            SetFieldValue(2, 0, batteryStatus_, Fit.SubfieldIndexMainField);
+            SetFieldValue(2, 0, average7DayDeviation_, Fit.SubfieldIndexMainField);
         }
         
         ///<summary>
-        /// Retrieves the BatteryIdentifier field</summary>
-        /// <returns>Returns nullable byte representing the BatteryIdentifier field</returns>
-        public byte? GetBatteryIdentifier()
+        /// Retrieves the NightlyValue field
+        /// Comment: Final overnight temperature value</summary>
+        /// <returns>Returns nullable float representing the NightlyValue field</returns>
+        public float? GetNightlyValue()
         {
-            Object val = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
+            Object val = GetFieldValue(4, 0, Fit.SubfieldIndexMainField);
             if(val == null)
             {
                 return null;
             }
 
-            return (Convert.ToByte(val));
+            return (Convert.ToSingle(val));
             
         }
 
         /// <summary>
-        /// Set BatteryIdentifier field</summary>
-        /// <param name="batteryIdentifier_">Nullable field value to be set</param>
-        public void SetBatteryIdentifier(byte? batteryIdentifier_)
+        /// Set NightlyValue field
+        /// Comment: Final overnight temperature value</summary>
+        /// <param name="nightlyValue_">Nullable field value to be set</param>
+        public void SetNightlyValue(float? nightlyValue_)
         {
-            SetFieldValue(3, 0, batteryIdentifier_, Fit.SubfieldIndexMainField);
+            SetFieldValue(4, 0, nightlyValue_, Fit.SubfieldIndexMainField);
         }
         
         #endregion // Methods
