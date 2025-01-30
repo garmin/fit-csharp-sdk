@@ -21,153 +21,146 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the HsaHeartRateData profile message.
-    /// </summary>
-    public class HsaHeartRateDataMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the HsaHeartRateData profile message.
+	/// </summary>
+	public class HsaHeartRateDataMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="HsaHeartRateDataMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte ProcessingInterval = 0;
-            public const byte Status = 1;
-            public const byte HeartRate = 2;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="HsaHeartRateDataMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte ProcessingInterval = 0;
+			public const byte Status = 1;
+			public const byte HeartRate = 2;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public HsaHeartRateDataMesg() : base(Profile.GetMesg(MesgNum.HsaHeartRateData))
-        {
-        }
+		#region Constructors
+		public HsaHeartRateDataMesg() : base(Profile.GetMesg(MesgNum.HsaHeartRateData))
+		{
+		}
 
-        public HsaHeartRateDataMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public HsaHeartRateDataMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field
-        /// Units: s</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field
+		/// Units: s</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field
-        /// Units: s</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ProcessingInterval field
-        /// Units: s
-        /// Comment: Processing interval length in seconds</summary>
-        /// <returns>Returns nullable ushort representing the ProcessingInterval field</returns>
-        public ushort? GetProcessingInterval()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+		///<summary>
+		/// Retrieves the ProcessingInterval field
+		/// Units: s
+		/// Comment: Processing interval length in seconds</summary>
+		/// <returns>Returns nullable ushort representing the ProcessingInterval field</returns>
+		public ushort? ProcessingInterval
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set ProcessingInterval field
-        /// Units: s
-        /// Comment: Processing interval length in seconds</summary>
-        /// <param name="processingInterval_">Nullable field value to be set</param>
-        public void SetProcessingInterval(ushort? processingInterval_)
-        {
-            SetFieldValue(0, 0, processingInterval_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Status field
-        /// Comment: Status of measurements in buffer - 0 indicates SEARCHING 1 indicates LOCKED</summary>
-        /// <returns>Returns nullable byte representing the Status field</returns>
-        public byte? GetStatus()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToUInt16(val));
 
-            return (Convert.ToByte(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set Status field
-        /// Comment: Status of measurements in buffer - 0 indicates SEARCHING 1 indicates LOCKED</summary>
-        /// <param name="status_">Nullable field value to be set</param>
-        public void SetStatus(byte? status_)
-        {
-            SetFieldValue(1, 0, status_, Fit.SubfieldIndexMainField);
-        }
-        
-        
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>returns number of elements in field HeartRate</returns>
-        public int GetNumHeartRate()
-        {
-            return GetNumFieldValues(2, Fit.SubfieldIndexMainField);
-        }
+		///<summary>
+		/// Retrieves the Status field
+		/// Comment: Status of measurements in buffer - 0 indicates SEARCHING 1 indicates LOCKED</summary>
+		/// <returns>Returns nullable byte representing the Status field</returns>
+		public byte? Status
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        ///<summary>
-        /// Retrieves the HeartRate field
-        /// Units: bpm
-        /// Comment: Beats / min. Blank: 0</summary>
-        /// <param name="index">0 based index of HeartRate element to retrieve</param>
-        /// <returns>Returns nullable byte representing the HeartRate field</returns>
-        public byte? GetHeartRate(int index)
-        {
-            Object val = GetFieldValue(2, index, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToByte(val));
 
-            return (Convert.ToByte(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set HeartRate field
-        /// Units: bpm
-        /// Comment: Beats / min. Blank: 0</summary>
-        /// <param name="index">0 based index of heart_rate</param>
-        /// <param name="heartRate_">Nullable field value to be set</param>
-        public void SetHeartRate(int index, byte? heartRate_)
-        {
-            SetFieldValue(2, index, heartRate_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <returns>returns number of elements in field HeartRate</returns>
+		public int GetNumHeartRate()
+		{
+			return GetNumFieldValues(2, Fit.SubfieldIndexMainField);
+		}
+
+		///<summary>
+		/// Retrieves the HeartRate field
+		/// Units: bpm
+		/// Comment: Beats / min. Blank: 0</summary>
+		/// <param name="index">0 based index of HeartRate element to retrieve</param>
+		/// <returns>Returns nullable byte representing the HeartRate field</returns>
+		public byte? GetHeartRate(int index)
+		{
+			Object val = GetFieldValue(2, index, Fit.SubfieldIndexMainField);
+			if (val == null)
+			{
+				return null;
+			}
+
+			return (Convert.ToByte(val));
+
+		}
+
+		/// <summary>
+		/// Set HeartRate field
+		/// Units: bpm
+		/// Comment: Beats / min. Blank: 0</summary>
+		/// <param name="index">0 based index of heart_rate</param>
+		/// <param name="heartRate_">Nullable field value to be set</param>
+		public void SetHeartRate(int index, byte? heartRate_)
+		{
+			SetFieldValue(2, index, heartRate_, Fit.SubfieldIndexMainField);
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

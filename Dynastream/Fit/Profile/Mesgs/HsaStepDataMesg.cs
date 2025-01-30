@@ -21,127 +21,122 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the HsaStepData profile message.
-    /// </summary>
-    public class HsaStepDataMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the HsaStepData profile message.
+	/// </summary>
+	public class HsaStepDataMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="HsaStepDataMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte ProcessingInterval = 0;
-            public const byte Steps = 1;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="HsaStepDataMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte ProcessingInterval = 0;
+			public const byte Steps = 1;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public HsaStepDataMesg() : base(Profile.GetMesg(MesgNum.HsaStepData))
-        {
-        }
+		#region Constructors
+		public HsaStepDataMesg() : base(Profile.GetMesg(MesgNum.HsaStepData))
+		{
+		}
 
-        public HsaStepDataMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public HsaStepDataMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field
-        /// Units: s</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field
+		/// Units: s</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field
-        /// Units: s</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ProcessingInterval field
-        /// Units: s
-        /// Comment: Processing interval length in seconds. File start: 0xFFFFFFEF File stop: 0xFFFFFFEE</summary>
-        /// <returns>Returns nullable ushort representing the ProcessingInterval field</returns>
-        public ushort? GetProcessingInterval()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+		///<summary>
+		/// Retrieves the ProcessingInterval field
+		/// Units: s
+		/// Comment: Processing interval length in seconds. File start: 0xFFFFFFEF File stop: 0xFFFFFFEE</summary>
+		/// <returns>Returns nullable ushort representing the ProcessingInterval field</returns>
+		public ushort? ProcessingInterval
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set ProcessingInterval field
-        /// Units: s
-        /// Comment: Processing interval length in seconds. File start: 0xFFFFFFEF File stop: 0xFFFFFFEE</summary>
-        /// <param name="processingInterval_">Nullable field value to be set</param>
-        public void SetProcessingInterval(ushort? processingInterval_)
-        {
-            SetFieldValue(0, 0, processingInterval_, Fit.SubfieldIndexMainField);
-        }
-        
-        
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>returns number of elements in field Steps</returns>
-        public int GetNumSteps()
-        {
-            return GetNumFieldValues(1, Fit.SubfieldIndexMainField);
-        }
+				return (Convert.ToUInt16(val));
 
-        ///<summary>
-        /// Retrieves the Steps field
-        /// Units: steps
-        /// Comment: Total step sum</summary>
-        /// <param name="index">0 based index of Steps element to retrieve</param>
-        /// <returns>Returns nullable uint representing the Steps field</returns>
-        public uint? GetSteps(int index)
-        {
-            Object val = GetFieldValue(1, index, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt32(val));
-            
-        }
 
-        /// <summary>
-        /// Set Steps field
-        /// Units: steps
-        /// Comment: Total step sum</summary>
-        /// <param name="index">0 based index of steps</param>
-        /// <param name="steps_">Nullable field value to be set</param>
-        public void SetSteps(int index, uint? steps_)
-        {
-            SetFieldValue(1, index, steps_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+		/// <summary>
+		///
+		/// </summary>
+		/// <returns>returns number of elements in field Steps</returns>
+		public int GetNumSteps()
+		{
+			return GetNumFieldValues(1, Fit.SubfieldIndexMainField);
+		}
+
+		///<summary>
+		/// Retrieves the Steps field
+		/// Units: steps
+		/// Comment: Total step sum</summary>
+		/// <param name="index">0 based index of Steps element to retrieve</param>
+		/// <returns>Returns nullable uint representing the Steps field</returns>
+		public uint? GetSteps(int index)
+		{
+			Object val = GetFieldValue(1, index, Fit.SubfieldIndexMainField);
+			if (val == null)
+			{
+				return null;
+			}
+
+			return (Convert.ToUInt32(val));
+
+		}
+
+		/// <summary>
+		/// Set Steps field
+		/// Units: steps
+		/// Comment: Total step sum</summary>
+		/// <param name="index">0 based index of steps</param>
+		/// <param name="steps_">Nullable field value to be set</param>
+		public void SetSteps(int index, uint? steps_)
+		{
+			SetFieldValue(1, index, steps_, Fit.SubfieldIndexMainField);
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

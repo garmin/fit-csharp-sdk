@@ -30,7 +30,7 @@ namespace Dynastream.Fit
         /// </summary>
         public uint ApplicationVersion
         {
-            get { return m_developerDataId.GetApplicationVersion() ?? uint.MaxValue; }
+            get { return m_developerDataId.ApplicationVersion ?? uint.MaxValue; }
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Dynastream.Fit
         /// </summary>
         public byte FieldDefinitionNumber
         {
-            get { return m_fieldDescription.GetFieldDefinitionNumber() ?? byte.MaxValue; }
+            get { return m_fieldDescription.FieldDefinitionNumber ?? byte.MaxValue; }
         }
 
         internal DeveloperFieldDescription(

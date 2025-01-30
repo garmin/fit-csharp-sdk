@@ -34,7 +34,7 @@ namespace Dynastream.Fit
         #endregion
 
         #region Properties
-        public string Name { get; set; }
+        public string MessageName { get; set; }
         public ushort Num { get; set; }
         public byte LocalNum
         {
@@ -76,11 +76,11 @@ namespace Dynastream.Fit
         {
             if (mesg == null)
             {
-                this.Name = "unknown";
+                this.MessageName = "unknown";
                 this.Num = (ushort)MesgNum.Invalid;
                 return;
             }
-            this.Name = mesg.Name;
+            this.MessageName = mesg.MessageName;
             this.Num = mesg.Num;
             this.LocalNum = mesg.LocalNum;
             this.systemTimeOffset = mesg.systemTimeOffset;
@@ -102,9 +102,9 @@ namespace Dynastream.Fit
             }
         }
 
-        public Mesg(string name, ushort num)
+        public Mesg(string messageName, ushort num)
         {
-            this.Name = name;
+            this.MessageName = messageName;
             this.Num = num;
         }
 

@@ -21,73 +21,73 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the Hrv profile message.
-    /// </summary>
-    public class HrvMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the Hrv profile message.
+	/// </summary>
+	public class HrvMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="HrvMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Time = 0;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="HrvMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Time = 0;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public HrvMesg() : base(Profile.GetMesg(MesgNum.Hrv))
-        {
-        }
+		#region Constructors
+		public HrvMesg() : base(Profile.GetMesg(MesgNum.Hrv))
+		{
+		}
 
-        public HrvMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public HrvMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>returns number of elements in field Time</returns>
-        public int GetNumTime()
-        {
-            return GetNumFieldValues(0, Fit.SubfieldIndexMainField);
-        }
+		#region Methods
 
-        ///<summary>
-        /// Retrieves the Time field
-        /// Units: s
-        /// Comment: Time between beats</summary>
-        /// <param name="index">0 based index of Time element to retrieve</param>
-        /// <returns>Returns nullable float representing the Time field</returns>
-        public float? GetTime(int index)
-        {
-            Object val = GetFieldValue(0, index, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		/// <summary>
+		///
+		/// </summary>
+		/// <returns>returns number of elements in field Time</returns>
+		public int GetNumTime()
+		{
+			return GetNumFieldValues(0, Fit.SubfieldIndexMainField);
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
+		///<summary>
+		/// Retrieves the Time field
+		/// Units: s
+		/// Comment: Time between beats</summary>
+		/// <param name="index">0 based index of Time element to retrieve</param>
+		/// <returns>Returns nullable float representing the Time field</returns>
+		public float? GetTime(int index)
+		{
+			Object val = GetFieldValue(0, index, Fit.SubfieldIndexMainField);
+			if (val == null)
+			{
+				return null;
+			}
 
-        /// <summary>
-        /// Set Time field
-        /// Units: s
-        /// Comment: Time between beats</summary>
-        /// <param name="index">0 based index of time</param>
-        /// <param name="time_">Nullable field value to be set</param>
-        public void SetTime(int index, float? time_)
-        {
-            SetFieldValue(0, index, time_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+			return (Convert.ToSingle(val));
+
+		}
+
+		/// <summary>
+		/// Set Time field
+		/// Units: s
+		/// Comment: Time between beats</summary>
+		/// <param name="index">0 based index of time</param>
+		/// <param name="time_">Nullable field value to be set</param>
+		public void SetTime(int index, float? time_)
+		{
+			SetFieldValue(0, index, time_, Fit.SubfieldIndexMainField);
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

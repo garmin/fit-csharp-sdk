@@ -21,127 +21,122 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the HsaRespirationData profile message.
-    /// </summary>
-    public class HsaRespirationDataMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the HsaRespirationData profile message.
+	/// </summary>
+	public class HsaRespirationDataMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="HsaRespirationDataMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte ProcessingInterval = 0;
-            public const byte RespirationRate = 1;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="HsaRespirationDataMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte ProcessingInterval = 0;
+			public const byte RespirationRate = 1;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public HsaRespirationDataMesg() : base(Profile.GetMesg(MesgNum.HsaRespirationData))
-        {
-        }
+		#region Constructors
+		public HsaRespirationDataMesg() : base(Profile.GetMesg(MesgNum.HsaRespirationData))
+		{
+		}
 
-        public HsaRespirationDataMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public HsaRespirationDataMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field
-        /// Units: s</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field
+		/// Units: s</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field
-        /// Units: s</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ProcessingInterval field
-        /// Units: s
-        /// Comment: Processing interval length in seconds</summary>
-        /// <returns>Returns nullable ushort representing the ProcessingInterval field</returns>
-        public ushort? GetProcessingInterval()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+		///<summary>
+		/// Retrieves the ProcessingInterval field
+		/// Units: s
+		/// Comment: Processing interval length in seconds</summary>
+		/// <returns>Returns nullable ushort representing the ProcessingInterval field</returns>
+		public ushort? ProcessingInterval
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set ProcessingInterval field
-        /// Units: s
-        /// Comment: Processing interval length in seconds</summary>
-        /// <param name="processingInterval_">Nullable field value to be set</param>
-        public void SetProcessingInterval(ushort? processingInterval_)
-        {
-            SetFieldValue(0, 0, processingInterval_, Fit.SubfieldIndexMainField);
-        }
-        
-        
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>returns number of elements in field RespirationRate</returns>
-        public int GetNumRespirationRate()
-        {
-            return GetNumFieldValues(1, Fit.SubfieldIndexMainField);
-        }
+				return (Convert.ToUInt16(val));
 
-        ///<summary>
-        /// Retrieves the RespirationRate field
-        /// Units: breaths/min
-        /// Comment: Breaths / min: [1,100] Invalid: 255 Excess motion: 254 Off wrist: 253 Not available: 252 Blank: 2.4</summary>
-        /// <param name="index">0 based index of RespirationRate element to retrieve</param>
-        /// <returns>Returns nullable float representing the RespirationRate field</returns>
-        public float? GetRespirationRate(int index)
-        {
-            Object val = GetFieldValue(1, index, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
 
-        /// <summary>
-        /// Set RespirationRate field
-        /// Units: breaths/min
-        /// Comment: Breaths / min: [1,100] Invalid: 255 Excess motion: 254 Off wrist: 253 Not available: 252 Blank: 2.4</summary>
-        /// <param name="index">0 based index of respiration_rate</param>
-        /// <param name="respirationRate_">Nullable field value to be set</param>
-        public void SetRespirationRate(int index, float? respirationRate_)
-        {
-            SetFieldValue(1, index, respirationRate_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+		/// <summary>
+		///
+		/// </summary>
+		/// <returns>returns number of elements in field RespirationRate</returns>
+		public int GetNumRespirationRate()
+		{
+			return GetNumFieldValues(1, Fit.SubfieldIndexMainField);
+		}
+
+		///<summary>
+		/// Retrieves the RespirationRate field
+		/// Units: breaths/min
+		/// Comment: Breaths / min: [1,100] Invalid: 255 Excess motion: 254 Off wrist: 253 Not available: 252 Blank: 2.4</summary>
+		/// <param name="index">0 based index of RespirationRate element to retrieve</param>
+		/// <returns>Returns nullable float representing the RespirationRate field</returns>
+		public float? GetRespirationRate(int index)
+		{
+			Object val = GetFieldValue(1, index, Fit.SubfieldIndexMainField);
+			if (val == null)
+			{
+				return null;
+			}
+
+			return (Convert.ToSingle(val));
+
+		}
+
+		/// <summary>
+		/// Set RespirationRate field
+		/// Units: breaths/min
+		/// Comment: Breaths / min: [1,100] Invalid: 255 Excess motion: 254 Off wrist: 253 Not available: 252 Blank: 2.4</summary>
+		/// <param name="index">0 based index of respiration_rate</param>
+		/// <param name="respirationRate_">Nullable field value to be set</param>
+		public void SetRespirationRate(int index, float? respirationRate_)
+		{
+			SetFieldValue(1, index, respirationRate_, Fit.SubfieldIndexMainField);
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

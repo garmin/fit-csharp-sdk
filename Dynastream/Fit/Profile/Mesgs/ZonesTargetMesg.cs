@@ -21,143 +21,138 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the ZonesTarget profile message.
-    /// </summary>
-    public class ZonesTargetMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the ZonesTarget profile message.
+	/// </summary>
+	public class ZonesTargetMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="ZonesTargetMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte MaxHeartRate = 1;
-            public const byte ThresholdHeartRate = 2;
-            public const byte FunctionalThresholdPower = 3;
-            public const byte HrCalcType = 5;
-            public const byte PwrCalcType = 7;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="ZonesTargetMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte MaxHeartRate = 1;
+			public const byte ThresholdHeartRate = 2;
+			public const byte FunctionalThresholdPower = 3;
+			public const byte HrCalcType = 5;
+			public const byte PwrCalcType = 7;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public ZonesTargetMesg() : base(Profile.GetMesg(MesgNum.ZonesTarget))
-        {
-        }
+		#region Constructors
+		public ZonesTargetMesg() : base(Profile.GetMesg(MesgNum.ZonesTarget))
+		{
+		}
 
-        public ZonesTargetMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public ZonesTargetMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the MaxHeartRate field</summary>
-        /// <returns>Returns nullable byte representing the MaxHeartRate field</returns>
-        public byte? GetMaxHeartRate()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the MaxHeartRate field</summary>
+		/// <returns>Returns nullable byte representing the MaxHeartRate field</returns>
+		public byte? MaxHeartRate
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToByte(val));
-            
-        }
+				return (Convert.ToByte(val));
 
-        /// <summary>
-        /// Set MaxHeartRate field</summary>
-        /// <param name="maxHeartRate_">Nullable field value to be set</param>
-        public void SetMaxHeartRate(byte? maxHeartRate_)
-        {
-            SetFieldValue(1, 0, maxHeartRate_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ThresholdHeartRate field</summary>
-        /// <returns>Returns nullable byte representing the ThresholdHeartRate field</returns>
-        public byte? GetThresholdHeartRate()
-        {
-            Object val = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToByte(val));
-            
-        }
+		///<summary>
+		/// Retrieves the ThresholdHeartRate field</summary>
+		/// <returns>Returns nullable byte representing the ThresholdHeartRate field</returns>
+		public byte? ThresholdHeartRate
+		{
+			get
+			{
+				Object val = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set ThresholdHeartRate field</summary>
-        /// <param name="thresholdHeartRate_">Nullable field value to be set</param>
-        public void SetThresholdHeartRate(byte? thresholdHeartRate_)
-        {
-            SetFieldValue(2, 0, thresholdHeartRate_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the FunctionalThresholdPower field</summary>
-        /// <returns>Returns nullable ushort representing the FunctionalThresholdPower field</returns>
-        public ushort? GetFunctionalThresholdPower()
-        {
-            Object val = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToByte(val));
 
-            return (Convert.ToUInt16(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(2, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set FunctionalThresholdPower field</summary>
-        /// <param name="functionalThresholdPower_">Nullable field value to be set</param>
-        public void SetFunctionalThresholdPower(ushort? functionalThresholdPower_)
-        {
-            SetFieldValue(3, 0, functionalThresholdPower_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the HrCalcType field</summary>
-        /// <returns>Returns nullable HrZoneCalc enum representing the HrCalcType field</returns>
-        public HrZoneCalc? GetHrCalcType()
-        {
-            object obj = GetFieldValue(5, 0, Fit.SubfieldIndexMainField);
-            HrZoneCalc? value = obj == null ? (HrZoneCalc?)null : (HrZoneCalc)obj;
-            return value;
-        }
+		///<summary>
+		/// Retrieves the FunctionalThresholdPower field</summary>
+		/// <returns>Returns nullable ushort representing the FunctionalThresholdPower field</returns>
+		public ushort? FunctionalThresholdPower
+		{
+			get
+			{
+				Object val = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set HrCalcType field</summary>
-        /// <param name="hrCalcType_">Nullable field value to be set</param>
-        public void SetHrCalcType(HrZoneCalc? hrCalcType_)
-        {
-            SetFieldValue(5, 0, hrCalcType_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the PwrCalcType field</summary>
-        /// <returns>Returns nullable PwrZoneCalc enum representing the PwrCalcType field</returns>
-        public PwrZoneCalc? GetPwrCalcType()
-        {
-            object obj = GetFieldValue(7, 0, Fit.SubfieldIndexMainField);
-            PwrZoneCalc? value = obj == null ? (PwrZoneCalc?)null : (PwrZoneCalc)obj;
-            return value;
-        }
+				return (Convert.ToUInt16(val));
 
-        /// <summary>
-        /// Set PwrCalcType field</summary>
-        /// <param name="pwrCalcType_">Nullable field value to be set</param>
-        public void SetPwrCalcType(PwrZoneCalc? pwrCalcType_)
-        {
-            SetFieldValue(7, 0, pwrCalcType_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+			}
+			set
+			{
+				SetFieldValue(3, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the HrCalcType field</summary>
+		/// <returns>Returns nullable HrZoneCalc enum representing the HrCalcType field</returns>
+		public HrZoneCalc? HrCalcType
+		{
+			get
+			{
+				object obj = GetFieldValue(5, 0, Fit.SubfieldIndexMainField);
+				HrZoneCalc? value = obj == null ? (HrZoneCalc?)null : (HrZoneCalc)obj;
+				return value;
+			}
+			set
+			{
+				SetFieldValue(5, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the PwrCalcType field</summary>
+		/// <returns>Returns nullable PwrZoneCalc enum representing the PwrCalcType field</returns>
+		public PwrZoneCalc? PwrCalcType
+		{
+			get
+			{
+				object obj = GetFieldValue(7, 0, Fit.SubfieldIndexMainField);
+				PwrZoneCalc? value = obj == null ? (PwrZoneCalc?)null : (PwrZoneCalc)obj;
+				return value;
+			}
+			set
+			{
+				SetFieldValue(7, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

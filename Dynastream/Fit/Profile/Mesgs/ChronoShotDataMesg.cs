@@ -21,107 +21,103 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the ChronoShotData profile message.
-    /// </summary>
-    public class ChronoShotDataMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the ChronoShotData profile message.
+	/// </summary>
+	public class ChronoShotDataMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="ChronoShotDataMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte ShotSpeed = 0;
-            public const byte ShotNum = 1;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="ChronoShotDataMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte ShotSpeed = 0;
+			public const byte ShotNum = 1;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public ChronoShotDataMesg() : base(Profile.GetMesg(MesgNum.ChronoShotData))
-        {
-        }
+		#region Constructors
+		public ChronoShotDataMesg() : base(Profile.GetMesg(MesgNum.ChronoShotData))
+		{
+		}
 
-        public ChronoShotDataMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public ChronoShotDataMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ShotSpeed field
-        /// Units: m/s</summary>
-        /// <returns>Returns nullable float representing the ShotSpeed field</returns>
-        public float? GetShotSpeed()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
+		///<summary>
+		/// Retrieves the ShotSpeed field
+		/// Units: m/s</summary>
+		/// <returns>Returns nullable float representing the ShotSpeed field</returns>
+		public float? ShotSpeed
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set ShotSpeed field
-        /// Units: m/s</summary>
-        /// <param name="shotSpeed_">Nullable field value to be set</param>
-        public void SetShotSpeed(float? shotSpeed_)
-        {
-            SetFieldValue(0, 0, shotSpeed_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ShotNum field</summary>
-        /// <returns>Returns nullable ushort representing the ShotNum field</returns>
-        public ushort? GetShotNum()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToSingle(val));
 
-            return (Convert.ToUInt16(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set ShotNum field</summary>
-        /// <param name="shotNum_">Nullable field value to be set</param>
-        public void SetShotNum(ushort? shotNum_)
-        {
-            SetFieldValue(1, 0, shotNum_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+		///<summary>
+		/// Retrieves the ShotNum field</summary>
+		/// <returns>Returns nullable ushort representing the ShotNum field</returns>
+		public ushort? ShotNum
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToUInt16(val));
+
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

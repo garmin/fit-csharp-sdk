@@ -21,263 +21,252 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the HsaGyroscopeData profile message.
-    /// </summary>
-    public class HsaGyroscopeDataMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the HsaGyroscopeData profile message.
+	/// </summary>
+	public class HsaGyroscopeDataMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="HsaGyroscopeDataMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte TimestampMs = 0;
-            public const byte SamplingInterval = 1;
-            public const byte GyroX = 2;
-            public const byte GyroY = 3;
-            public const byte GyroZ = 4;
-            public const byte Timestamp32k = 5;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="HsaGyroscopeDataMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte TimestampMs = 0;
+			public const byte SamplingInterval = 1;
+			public const byte GyroX = 2;
+			public const byte GyroY = 3;
+			public const byte GyroZ = 4;
+			public const byte Timestamp32k = 5;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public HsaGyroscopeDataMesg() : base(Profile.GetMesg(MesgNum.HsaGyroscopeData))
-        {
-        }
+		#region Constructors
+		public HsaGyroscopeDataMesg() : base(Profile.GetMesg(MesgNum.HsaGyroscopeData))
+		{
+		}
 
-        public HsaGyroscopeDataMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public HsaGyroscopeDataMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field
-        /// Units: s</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field
+		/// Units: s</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field
-        /// Units: s</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the TimestampMs field
-        /// Units: ms
-        /// Comment: Millisecond resolution of the timestamp</summary>
-        /// <returns>Returns nullable ushort representing the TimestampMs field</returns>
-        public ushort? GetTimestampMs()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+		///<summary>
+		/// Retrieves the TimestampMs field
+		/// Units: ms
+		/// Comment: Millisecond resolution of the timestamp</summary>
+		/// <returns>Returns nullable ushort representing the TimestampMs field</returns>
+		public ushort? TimestampMs
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set TimestampMs field
-        /// Units: ms
-        /// Comment: Millisecond resolution of the timestamp</summary>
-        /// <param name="timestampMs_">Nullable field value to be set</param>
-        public void SetTimestampMs(ushort? timestampMs_)
-        {
-            SetFieldValue(0, 0, timestampMs_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the SamplingInterval field
-        /// Units: 1/32768 s
-        /// Comment: Sampling Interval in 32 kHz timescale</summary>
-        /// <returns>Returns nullable ushort representing the SamplingInterval field</returns>
-        public ushort? GetSamplingInterval()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToUInt16(val));
 
-            return (Convert.ToUInt16(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set SamplingInterval field
-        /// Units: 1/32768 s
-        /// Comment: Sampling Interval in 32 kHz timescale</summary>
-        /// <param name="samplingInterval_">Nullable field value to be set</param>
-        public void SetSamplingInterval(ushort? samplingInterval_)
-        {
-            SetFieldValue(1, 0, samplingInterval_, Fit.SubfieldIndexMainField);
-        }
-        
-        
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>returns number of elements in field GyroX</returns>
-        public int GetNumGyroX()
-        {
-            return GetNumFieldValues(2, Fit.SubfieldIndexMainField);
-        }
+		///<summary>
+		/// Retrieves the SamplingInterval field
+		/// Units: 1/32768 s
+		/// Comment: Sampling Interval in 32 kHz timescale</summary>
+		/// <returns>Returns nullable ushort representing the SamplingInterval field</returns>
+		public ushort? SamplingInterval
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        ///<summary>
-        /// Retrieves the GyroX field
-        /// Units: deg/s
-        /// Comment: X-Axis Measurement</summary>
-        /// <param name="index">0 based index of GyroX element to retrieve</param>
-        /// <returns>Returns nullable float representing the GyroX field</returns>
-        public float? GetGyroX(int index)
-        {
-            Object val = GetFieldValue(2, index, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToUInt16(val));
 
-            return (Convert.ToSingle(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set GyroX field
-        /// Units: deg/s
-        /// Comment: X-Axis Measurement</summary>
-        /// <param name="index">0 based index of gyro_x</param>
-        /// <param name="gyroX_">Nullable field value to be set</param>
-        public void SetGyroX(int index, float? gyroX_)
-        {
-            SetFieldValue(2, index, gyroX_, Fit.SubfieldIndexMainField);
-        }
-        
-        
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>returns number of elements in field GyroY</returns>
-        public int GetNumGyroY()
-        {
-            return GetNumFieldValues(3, Fit.SubfieldIndexMainField);
-        }
 
-        ///<summary>
-        /// Retrieves the GyroY field
-        /// Units: deg/s
-        /// Comment: Y-Axis Measurement</summary>
-        /// <param name="index">0 based index of GyroY element to retrieve</param>
-        /// <returns>Returns nullable float representing the GyroY field</returns>
-        public float? GetGyroY(int index)
-        {
-            Object val = GetFieldValue(3, index, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		/// <summary>
+		///
+		/// </summary>
+		/// <returns>returns number of elements in field GyroX</returns>
+		public int GetNumGyroX()
+		{
+			return GetNumFieldValues(2, Fit.SubfieldIndexMainField);
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
+		///<summary>
+		/// Retrieves the GyroX field
+		/// Units: deg/s
+		/// Comment: X-Axis Measurement</summary>
+		/// <param name="index">0 based index of GyroX element to retrieve</param>
+		/// <returns>Returns nullable float representing the GyroX field</returns>
+		public float? GetGyroX(int index)
+		{
+			Object val = GetFieldValue(2, index, Fit.SubfieldIndexMainField);
+			if (val == null)
+			{
+				return null;
+			}
 
-        /// <summary>
-        /// Set GyroY field
-        /// Units: deg/s
-        /// Comment: Y-Axis Measurement</summary>
-        /// <param name="index">0 based index of gyro_y</param>
-        /// <param name="gyroY_">Nullable field value to be set</param>
-        public void SetGyroY(int index, float? gyroY_)
-        {
-            SetFieldValue(3, index, gyroY_, Fit.SubfieldIndexMainField);
-        }
-        
-        
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>returns number of elements in field GyroZ</returns>
-        public int GetNumGyroZ()
-        {
-            return GetNumFieldValues(4, Fit.SubfieldIndexMainField);
-        }
+			return (Convert.ToSingle(val));
 
-        ///<summary>
-        /// Retrieves the GyroZ field
-        /// Units: deg/s
-        /// Comment: Z-Axis Measurement</summary>
-        /// <param name="index">0 based index of GyroZ element to retrieve</param>
-        /// <returns>Returns nullable float representing the GyroZ field</returns>
-        public float? GetGyroZ(int index)
-        {
-            Object val = GetFieldValue(4, index, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
+		/// <summary>
+		/// Set GyroX field
+		/// Units: deg/s
+		/// Comment: X-Axis Measurement</summary>
+		/// <param name="index">0 based index of gyro_x</param>
+		/// <param name="gyroX_">Nullable field value to be set</param>
+		public void SetGyroX(int index, float? gyroX_)
+		{
+			SetFieldValue(2, index, gyroX_, Fit.SubfieldIndexMainField);
+		}
 
-        /// <summary>
-        /// Set GyroZ field
-        /// Units: deg/s
-        /// Comment: Z-Axis Measurement</summary>
-        /// <param name="index">0 based index of gyro_z</param>
-        /// <param name="gyroZ_">Nullable field value to be set</param>
-        public void SetGyroZ(int index, float? gyroZ_)
-        {
-            SetFieldValue(4, index, gyroZ_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Timestamp32k field
-        /// Units: 1/32768 s
-        /// Comment: 32 kHz timestamp</summary>
-        /// <returns>Returns nullable uint representing the Timestamp32k field</returns>
-        public uint? GetTimestamp32k()
-        {
-            Object val = GetFieldValue(5, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
 
-            return (Convert.ToUInt32(val));
-            
-        }
+		/// <summary>
+		///
+		/// </summary>
+		/// <returns>returns number of elements in field GyroY</returns>
+		public int GetNumGyroY()
+		{
+			return GetNumFieldValues(3, Fit.SubfieldIndexMainField);
+		}
 
-        /// <summary>
-        /// Set Timestamp32k field
-        /// Units: 1/32768 s
-        /// Comment: 32 kHz timestamp</summary>
-        /// <param name="timestamp32k_">Nullable field value to be set</param>
-        public void SetTimestamp32k(uint? timestamp32k_)
-        {
-            SetFieldValue(5, 0, timestamp32k_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+		///<summary>
+		/// Retrieves the GyroY field
+		/// Units: deg/s
+		/// Comment: Y-Axis Measurement</summary>
+		/// <param name="index">0 based index of GyroY element to retrieve</param>
+		/// <returns>Returns nullable float representing the GyroY field</returns>
+		public float? GetGyroY(int index)
+		{
+			Object val = GetFieldValue(3, index, Fit.SubfieldIndexMainField);
+			if (val == null)
+			{
+				return null;
+			}
+
+			return (Convert.ToSingle(val));
+
+		}
+
+		/// <summary>
+		/// Set GyroY field
+		/// Units: deg/s
+		/// Comment: Y-Axis Measurement</summary>
+		/// <param name="index">0 based index of gyro_y</param>
+		/// <param name="gyroY_">Nullable field value to be set</param>
+		public void SetGyroY(int index, float? gyroY_)
+		{
+			SetFieldValue(3, index, gyroY_, Fit.SubfieldIndexMainField);
+		}
+
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <returns>returns number of elements in field GyroZ</returns>
+		public int GetNumGyroZ()
+		{
+			return GetNumFieldValues(4, Fit.SubfieldIndexMainField);
+		}
+
+		///<summary>
+		/// Retrieves the GyroZ field
+		/// Units: deg/s
+		/// Comment: Z-Axis Measurement</summary>
+		/// <param name="index">0 based index of GyroZ element to retrieve</param>
+		/// <returns>Returns nullable float representing the GyroZ field</returns>
+		public float? GetGyroZ(int index)
+		{
+			Object val = GetFieldValue(4, index, Fit.SubfieldIndexMainField);
+			if (val == null)
+			{
+				return null;
+			}
+
+			return (Convert.ToSingle(val));
+
+		}
+
+		/// <summary>
+		/// Set GyroZ field
+		/// Units: deg/s
+		/// Comment: Z-Axis Measurement</summary>
+		/// <param name="index">0 based index of gyro_z</param>
+		/// <param name="gyroZ_">Nullable field value to be set</param>
+		public void SetGyroZ(int index, float? gyroZ_)
+		{
+			SetFieldValue(4, index, gyroZ_, Fit.SubfieldIndexMainField);
+		}
+
+		///<summary>
+		/// Retrieves the Timestamp32k field
+		/// Units: 1/32768 s
+		/// Comment: 32 kHz timestamp</summary>
+		/// <returns>Returns nullable uint representing the Timestamp32k field</returns>
+		public uint? Timestamp32k
+		{
+			get
+			{
+				Object val = GetFieldValue(5, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToUInt32(val));
+
+			}
+			set
+			{
+				SetFieldValue(5, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

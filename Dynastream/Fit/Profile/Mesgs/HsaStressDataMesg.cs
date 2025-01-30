@@ -21,125 +21,121 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the HsaStressData profile message.
-    /// </summary>
-    public class HsaStressDataMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the HsaStressData profile message.
+	/// </summary>
+	public class HsaStressDataMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="HsaStressDataMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte ProcessingInterval = 0;
-            public const byte StressLevel = 1;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="HsaStressDataMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte ProcessingInterval = 0;
+			public const byte StressLevel = 1;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public HsaStressDataMesg() : base(Profile.GetMesg(MesgNum.HsaStressData))
-        {
-        }
+		#region Constructors
+		public HsaStressDataMesg() : base(Profile.GetMesg(MesgNum.HsaStressData))
+		{
+		}
 
-        public HsaStressDataMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public HsaStressDataMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ProcessingInterval field
-        /// Units: s
-        /// Comment: Processing interval length in seconds</summary>
-        /// <returns>Returns nullable ushort representing the ProcessingInterval field</returns>
-        public ushort? GetProcessingInterval()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+		///<summary>
+		/// Retrieves the ProcessingInterval field
+		/// Units: s
+		/// Comment: Processing interval length in seconds</summary>
+		/// <returns>Returns nullable ushort representing the ProcessingInterval field</returns>
+		public ushort? ProcessingInterval
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set ProcessingInterval field
-        /// Units: s
-        /// Comment: Processing interval length in seconds</summary>
-        /// <param name="processingInterval_">Nullable field value to be set</param>
-        public void SetProcessingInterval(ushort? processingInterval_)
-        {
-            SetFieldValue(0, 0, processingInterval_, Fit.SubfieldIndexMainField);
-        }
-        
-        
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>returns number of elements in field StressLevel</returns>
-        public int GetNumStressLevel()
-        {
-            return GetNumFieldValues(1, Fit.SubfieldIndexMainField);
-        }
+				return (Convert.ToUInt16(val));
 
-        ///<summary>
-        /// Retrieves the StressLevel field
-        /// Units: s
-        /// Comment: Stress Level: [0,100] Off wrist: -1 Excess motion: -2 Not enough data: -3 Recovering from exercise: -4 Unidentified: -5 Blank: -16</summary>
-        /// <param name="index">0 based index of StressLevel element to retrieve</param>
-        /// <returns>Returns nullable sbyte representing the StressLevel field</returns>
-        public sbyte? GetStressLevel(int index)
-        {
-            Object val = GetFieldValue(1, index, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToSByte(val));
-            
-        }
 
-        /// <summary>
-        /// Set StressLevel field
-        /// Units: s
-        /// Comment: Stress Level: [0,100] Off wrist: -1 Excess motion: -2 Not enough data: -3 Recovering from exercise: -4 Unidentified: -5 Blank: -16</summary>
-        /// <param name="index">0 based index of stress_level</param>
-        /// <param name="stressLevel_">Nullable field value to be set</param>
-        public void SetStressLevel(int index, sbyte? stressLevel_)
-        {
-            SetFieldValue(1, index, stressLevel_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+		/// <summary>
+		///
+		/// </summary>
+		/// <returns>returns number of elements in field StressLevel</returns>
+		public int GetNumStressLevel()
+		{
+			return GetNumFieldValues(1, Fit.SubfieldIndexMainField);
+		}
+
+		///<summary>
+		/// Retrieves the StressLevel field
+		/// Units: s
+		/// Comment: Stress Level: [0,100] Off wrist: -1 Excess motion: -2 Not enough data: -3 Recovering from exercise: -4 Unidentified: -5 Blank: -16</summary>
+		/// <param name="index">0 based index of StressLevel element to retrieve</param>
+		/// <returns>Returns nullable sbyte representing the StressLevel field</returns>
+		public sbyte? GetStressLevel(int index)
+		{
+			Object val = GetFieldValue(1, index, Fit.SubfieldIndexMainField);
+			if (val == null)
+			{
+				return null;
+			}
+
+			return (Convert.ToSByte(val));
+
+		}
+
+		/// <summary>
+		/// Set StressLevel field
+		/// Units: s
+		/// Comment: Stress Level: [0,100] Off wrist: -1 Excess motion: -2 Not enough data: -3 Recovering from exercise: -4 Unidentified: -5 Blank: -16</summary>
+		/// <param name="index">0 based index of stress_level</param>
+		/// <param name="stressLevel_">Nullable field value to be set</param>
+		public void SetStressLevel(int index, sbyte? stressLevel_)
+		{
+			SetFieldValue(1, index, stressLevel_, Fit.SubfieldIndexMainField);
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

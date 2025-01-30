@@ -21,130 +21,123 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the Spo2Data profile message.
-    /// </summary>
-    public class Spo2DataMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the Spo2Data profile message.
+	/// </summary>
+	public class Spo2DataMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="Spo2DataMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte ReadingSpo2 = 0;
-            public const byte ReadingConfidence = 1;
-            public const byte Mode = 2;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="Spo2DataMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte ReadingSpo2 = 0;
+			public const byte ReadingConfidence = 1;
+			public const byte Mode = 2;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public Spo2DataMesg() : base(Profile.GetMesg(MesgNum.Spo2Data))
-        {
-        }
+		#region Constructors
+		public Spo2DataMesg() : base(Profile.GetMesg(MesgNum.Spo2Data))
+		{
+		}
 
-        public Spo2DataMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public Spo2DataMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field
-        /// Units: s</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field
+		/// Units: s</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field
-        /// Units: s</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ReadingSpo2 field
-        /// Units: percent</summary>
-        /// <returns>Returns nullable byte representing the ReadingSpo2 field</returns>
-        public byte? GetReadingSpo2()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToByte(val));
-            
-        }
+		///<summary>
+		/// Retrieves the ReadingSpo2 field
+		/// Units: percent</summary>
+		/// <returns>Returns nullable byte representing the ReadingSpo2 field</returns>
+		public byte? ReadingSpo2
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set ReadingSpo2 field
-        /// Units: percent</summary>
-        /// <param name="readingSpo2_">Nullable field value to be set</param>
-        public void SetReadingSpo2(byte? readingSpo2_)
-        {
-            SetFieldValue(0, 0, readingSpo2_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ReadingConfidence field</summary>
-        /// <returns>Returns nullable byte representing the ReadingConfidence field</returns>
-        public byte? GetReadingConfidence()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToByte(val));
 
-            return (Convert.ToByte(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set ReadingConfidence field</summary>
-        /// <param name="readingConfidence_">Nullable field value to be set</param>
-        public void SetReadingConfidence(byte? readingConfidence_)
-        {
-            SetFieldValue(1, 0, readingConfidence_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Mode field
-        /// Comment: Mode when data was captured</summary>
-        /// <returns>Returns nullable Spo2MeasurementType enum representing the Mode field</returns>
-        public Spo2MeasurementType? GetMode()
-        {
-            object obj = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
-            Spo2MeasurementType? value = obj == null ? (Spo2MeasurementType?)null : (Spo2MeasurementType)obj;
-            return value;
-        }
+		///<summary>
+		/// Retrieves the ReadingConfidence field</summary>
+		/// <returns>Returns nullable byte representing the ReadingConfidence field</returns>
+		public byte? ReadingConfidence
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set Mode field
-        /// Comment: Mode when data was captured</summary>
-        /// <param name="mode_">Nullable field value to be set</param>
-        public void SetMode(Spo2MeasurementType? mode_)
-        {
-            SetFieldValue(2, 0, mode_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+				return (Convert.ToByte(val));
+
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the Mode field
+		/// Comment: Mode when data was captured</summary>
+		/// <returns>Returns nullable Spo2MeasurementType enum representing the Mode field</returns>
+		public Spo2MeasurementType? Mode
+		{
+			get
+			{
+				object obj = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
+				Spo2MeasurementType? value = obj == null ? (Spo2MeasurementType?)null : (Spo2MeasurementType)obj;
+				return value;
+			}
+			set
+			{
+				SetFieldValue(2, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

@@ -21,33 +21,33 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the Pad profile message.
-    /// </summary>
-    public class PadMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the Pad profile message.
+	/// </summary>
+	public class PadMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="PadMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="PadMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public PadMesg() : base(Profile.GetMesg(MesgNum.Pad))
-        {
-        }
+		#region Constructors
+		public PadMesg() : base(Profile.GetMesg(MesgNum.Pad))
+		{
+		}
 
-        public PadMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public PadMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        #endregion // Methods
-    } // Class
+		#region Methods
+		#endregion // Methods
+	} // Class
 } // namespace

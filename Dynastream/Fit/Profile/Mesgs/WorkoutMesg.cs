@@ -21,272 +21,258 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the Workout profile message.
-    /// </summary>
-    public class WorkoutMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the Workout profile message.
+	/// </summary>
+	public class WorkoutMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="WorkoutMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte MessageIndex = 254;
-            public const byte Sport = 4;
-            public const byte Capabilities = 5;
-            public const byte NumValidSteps = 6;
-            public const byte WktName = 8;
-            public const byte SubSport = 11;
-            public const byte PoolLength = 14;
-            public const byte PoolLengthUnit = 15;
-            public const byte WktDescription = 17;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="WorkoutMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte MessageIndex = 254;
+			public const byte Sport = 4;
+			public const byte Capabilities = 5;
+			public const byte NumValidSteps = 6;
+			public const byte WktName = 8;
+			public const byte SubSport = 11;
+			public const byte PoolLength = 14;
+			public const byte PoolLengthUnit = 15;
+			public const byte WktDescription = 17;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public WorkoutMesg() : base(Profile.GetMesg(MesgNum.Workout))
-        {
-        }
+		#region Constructors
+		public WorkoutMesg() : base(Profile.GetMesg(MesgNum.Workout))
+		{
+		}
 
-        public WorkoutMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public WorkoutMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the MessageIndex field</summary>
-        /// <returns>Returns nullable ushort representing the MessageIndex field</returns>
-        public ushort? GetMessageIndex()
-        {
-            Object val = GetFieldValue(254, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the MessageIndex field</summary>
+		/// <returns>Returns nullable ushort representing the MessageIndex field</returns>
+		public ushort? MessageIndex
+		{
+			get
+			{
+				Object val = GetFieldValue(254, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+				return (Convert.ToUInt16(val));
 
-        /// <summary>
-        /// Set MessageIndex field</summary>
-        /// <param name="messageIndex_">Nullable field value to be set</param>
-        public void SetMessageIndex(ushort? messageIndex_)
-        {
-            SetFieldValue(254, 0, messageIndex_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Sport field</summary>
-        /// <returns>Returns nullable Sport enum representing the Sport field</returns>
-        public Sport? GetSport()
-        {
-            object obj = GetFieldValue(4, 0, Fit.SubfieldIndexMainField);
-            Sport? value = obj == null ? (Sport?)null : (Sport)obj;
-            return value;
-        }
+			}
+			set
+			{
+				SetFieldValue(254, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set Sport field</summary>
-        /// <param name="sport_">Nullable field value to be set</param>
-        public void SetSport(Sport? sport_)
-        {
-            SetFieldValue(4, 0, sport_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Capabilities field</summary>
-        /// <returns>Returns nullable uint representing the Capabilities field</returns>
-        public uint? GetCapabilities()
-        {
-            Object val = GetFieldValue(5, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the Sport field</summary>
+		/// <returns>Returns nullable Sport enum representing the Sport field</returns>
+		public Sport? Sport
+		{
+			get
+			{
+				object obj = GetFieldValue(4, 0, Fit.SubfieldIndexMainField);
+				Sport? value = obj == null ? (Sport?)null : (Sport)obj;
+				return value;
+			}
+			set
+			{
+				SetFieldValue(4, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt32(val));
-            
-        }
+		///<summary>
+		/// Retrieves the Capabilities field</summary>
+		/// <returns>Returns nullable uint representing the Capabilities field</returns>
+		public uint? Capabilities
+		{
+			get
+			{
+				Object val = GetFieldValue(5, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set Capabilities field</summary>
-        /// <param name="capabilities_">Nullable field value to be set</param>
-        public void SetCapabilities(uint? capabilities_)
-        {
-            SetFieldValue(5, 0, capabilities_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the NumValidSteps field
-        /// Comment: number of valid steps</summary>
-        /// <returns>Returns nullable ushort representing the NumValidSteps field</returns>
-        public ushort? GetNumValidSteps()
-        {
-            Object val = GetFieldValue(6, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToUInt32(val));
 
-            return (Convert.ToUInt16(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(5, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set NumValidSteps field
-        /// Comment: number of valid steps</summary>
-        /// <param name="numValidSteps_">Nullable field value to be set</param>
-        public void SetNumValidSteps(ushort? numValidSteps_)
-        {
-            SetFieldValue(6, 0, numValidSteps_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the WktName field</summary>
-        /// <returns>Returns byte[] representing the WktName field</returns>
-        public byte[] GetWktName()
-        {
-            byte[] data = (byte[])GetFieldValue(8, 0, Fit.SubfieldIndexMainField);
-            return data.Take(data.Length - 1).ToArray();
-        }
+		///<summary>
+		/// Retrieves the NumValidSteps field
+		/// Comment: number of valid steps</summary>
+		/// <returns>Returns nullable ushort representing the NumValidSteps field</returns>
+		public ushort? NumValidSteps
+		{
+			get
+			{
+				Object val = GetFieldValue(6, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        ///<summary>
-        /// Retrieves the WktName field</summary>
-        /// <returns>Returns String representing the WktName field</returns>
-        public String GetWktNameAsString()
-        {
-            byte[] data = (byte[])GetFieldValue(8, 0, Fit.SubfieldIndexMainField);
-            return data != null ? Encoding.UTF8.GetString(data, 0, data.Length - 1) : null;
-        }
+				return (Convert.ToUInt16(val));
 
-        ///<summary>
-        /// Set WktName field</summary>
-        /// <param name="wktName_"> field value to be set</param>
-        public void SetWktName(String wktName_)
-        {
-            byte[] data = Encoding.UTF8.GetBytes(wktName_);
-            byte[] zdata = new byte[data.Length + 1];
-            data.CopyTo(zdata, 0);
-            SetFieldValue(8, 0, zdata, Fit.SubfieldIndexMainField);
-        }
+			}
+			set
+			{
+				SetFieldValue(6, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        
-        /// <summary>
-        /// Set WktName field</summary>
-        /// <param name="wktName_">field value to be set</param>
-        public void SetWktName(byte[] wktName_)
-        {
-            SetFieldValue(8, 0, wktName_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the SubSport field</summary>
-        /// <returns>Returns nullable SubSport enum representing the SubSport field</returns>
-        public SubSport? GetSubSport()
-        {
-            object obj = GetFieldValue(11, 0, Fit.SubfieldIndexMainField);
-            SubSport? value = obj == null ? (SubSport?)null : (SubSport)obj;
-            return value;
-        }
+		///<summary>
+		/// Retrieves the WktName field</summary>
+		/// <returns>Returns byte[] representing the WktName field</returns>
+		public byte[] WktName
+		{
+			get
+			{
+				byte[] data = (byte[])GetFieldValue(8, 0, Fit.SubfieldIndexMainField);
+				return data.Take(data.Length - 1).ToArray();
+			}
+			set
+			{
+				SetFieldValue(8, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set SubSport field</summary>
-        /// <param name="subSport_">Nullable field value to be set</param>
-        public void SetSubSport(SubSport? subSport_)
-        {
-            SetFieldValue(11, 0, subSport_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the PoolLength field
-        /// Units: m</summary>
-        /// <returns>Returns nullable float representing the PoolLength field</returns>
-        public float? GetPoolLength()
-        {
-            Object val = GetFieldValue(14, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the WktName field</summary>
+		/// <returns>Returns String representing the WktName field</returns>
+		public String GetWktNameAsString()
+		{
+			byte[] data = (byte[])GetFieldValue(8, 0, Fit.SubfieldIndexMainField);
+			return data != null ? Encoding.UTF8.GetString(data, 0, data.Length - 1) : null;
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
+		///<summary>
+		/// Set WktName field</summary>
+		/// <param name="wktName_"> field value to be set</param>
+		public void SetWktName(String wktName_)
+		{
+			byte[] data = Encoding.UTF8.GetBytes(wktName_);
+			byte[] zdata = new byte[data.Length + 1];
+			data.CopyTo(zdata, 0);
+			SetFieldValue(8, 0, zdata, Fit.SubfieldIndexMainField);
+		}
 
-        /// <summary>
-        /// Set PoolLength field
-        /// Units: m</summary>
-        /// <param name="poolLength_">Nullable field value to be set</param>
-        public void SetPoolLength(float? poolLength_)
-        {
-            SetFieldValue(14, 0, poolLength_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the PoolLengthUnit field</summary>
-        /// <returns>Returns nullable DisplayMeasure enum representing the PoolLengthUnit field</returns>
-        public DisplayMeasure? GetPoolLengthUnit()
-        {
-            object obj = GetFieldValue(15, 0, Fit.SubfieldIndexMainField);
-            DisplayMeasure? value = obj == null ? (DisplayMeasure?)null : (DisplayMeasure)obj;
-            return value;
-        }
+		///<summary>
+		/// Retrieves the SubSport field</summary>
+		/// <returns>Returns nullable SubSport enum representing the SubSport field</returns>
+		public SubSport? SubSport
+		{
+			get
+			{
+				object obj = GetFieldValue(11, 0, Fit.SubfieldIndexMainField);
+				SubSport? value = obj == null ? (SubSport?)null : (SubSport)obj;
+				return value;
+			}
+			set
+			{
+				SetFieldValue(11, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set PoolLengthUnit field</summary>
-        /// <param name="poolLengthUnit_">Nullable field value to be set</param>
-        public void SetPoolLengthUnit(DisplayMeasure? poolLengthUnit_)
-        {
-            SetFieldValue(15, 0, poolLengthUnit_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the WktDescription field
-        /// Comment: Description of the workout</summary>
-        /// <returns>Returns byte[] representing the WktDescription field</returns>
-        public byte[] GetWktDescription()
-        {
-            byte[] data = (byte[])GetFieldValue(17, 0, Fit.SubfieldIndexMainField);
-            return data.Take(data.Length - 1).ToArray();
-        }
+		///<summary>
+		/// Retrieves the PoolLength field
+		/// Units: m</summary>
+		/// <returns>Returns nullable float representing the PoolLength field</returns>
+		public float? PoolLength
+		{
+			get
+			{
+				Object val = GetFieldValue(14, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        ///<summary>
-        /// Retrieves the WktDescription field
-        /// Comment: Description of the workout</summary>
-        /// <returns>Returns String representing the WktDescription field</returns>
-        public String GetWktDescriptionAsString()
-        {
-            byte[] data = (byte[])GetFieldValue(17, 0, Fit.SubfieldIndexMainField);
-            return data != null ? Encoding.UTF8.GetString(data, 0, data.Length - 1) : null;
-        }
+				return (Convert.ToSingle(val));
 
-        ///<summary>
-        /// Set WktDescription field
-        /// Comment: Description of the workout</summary>
-        /// <param name="wktDescription_"> field value to be set</param>
-        public void SetWktDescription(String wktDescription_)
-        {
-            byte[] data = Encoding.UTF8.GetBytes(wktDescription_);
-            byte[] zdata = new byte[data.Length + 1];
-            data.CopyTo(zdata, 0);
-            SetFieldValue(17, 0, zdata, Fit.SubfieldIndexMainField);
-        }
+			}
+			set
+			{
+				SetFieldValue(14, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        
-        /// <summary>
-        /// Set WktDescription field
-        /// Comment: Description of the workout</summary>
-        /// <param name="wktDescription_">field value to be set</param>
-        public void SetWktDescription(byte[] wktDescription_)
-        {
-            SetFieldValue(17, 0, wktDescription_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+		///<summary>
+		/// Retrieves the PoolLengthUnit field</summary>
+		/// <returns>Returns nullable DisplayMeasure enum representing the PoolLengthUnit field</returns>
+		public DisplayMeasure? PoolLengthUnit
+		{
+			get
+			{
+				object obj = GetFieldValue(15, 0, Fit.SubfieldIndexMainField);
+				DisplayMeasure? value = obj == null ? (DisplayMeasure?)null : (DisplayMeasure)obj;
+				return value;
+			}
+			set
+			{
+				SetFieldValue(15, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the WktDescription field
+		/// Comment: Description of the workout</summary>
+		/// <returns>Returns byte[] representing the WktDescription field</returns>
+		public byte[] WktDescription
+		{
+			get
+			{
+				byte[] data = (byte[])GetFieldValue(17, 0, Fit.SubfieldIndexMainField);
+				return data.Take(data.Length - 1).ToArray();
+			}
+			set
+			{
+				SetFieldValue(17, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the WktDescription field
+		/// Comment: Description of the workout</summary>
+		/// <returns>Returns String representing the WktDescription field</returns>
+		public String GetWktDescriptionAsString()
+		{
+			byte[] data = (byte[])GetFieldValue(17, 0, Fit.SubfieldIndexMainField);
+			return data != null ? Encoding.UTF8.GetString(data, 0, data.Length - 1) : null;
+		}
+
+		///<summary>
+		/// Set WktDescription field
+		/// Comment: Description of the workout</summary>
+		/// <param name="wktDescription_"> field value to be set</param>
+		public void SetWktDescription(String wktDescription_)
+		{
+			byte[] data = Encoding.UTF8.GetBytes(wktDescription_);
+			byte[] zdata = new byte[data.Length + 1];
+			data.CopyTo(zdata, 0);
+			SetFieldValue(17, 0, zdata, Fit.SubfieldIndexMainField);
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

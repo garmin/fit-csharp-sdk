@@ -21,230 +21,217 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the ChronoShotSession profile message.
-    /// </summary>
-    public class ChronoShotSessionMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the ChronoShotSession profile message.
+	/// </summary>
+	public class ChronoShotSessionMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="ChronoShotSessionMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte MinSpeed = 0;
-            public const byte MaxSpeed = 1;
-            public const byte AvgSpeed = 2;
-            public const byte ShotCount = 3;
-            public const byte ProjectileType = 4;
-            public const byte GrainWeight = 5;
-            public const byte StandardDeviation = 6;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="ChronoShotSessionMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte MinSpeed = 0;
+			public const byte MaxSpeed = 1;
+			public const byte AvgSpeed = 2;
+			public const byte ShotCount = 3;
+			public const byte ProjectileType = 4;
+			public const byte GrainWeight = 5;
+			public const byte StandardDeviation = 6;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public ChronoShotSessionMesg() : base(Profile.GetMesg(MesgNum.ChronoShotSession))
-        {
-        }
+		#region Constructors
+		public ChronoShotSessionMesg() : base(Profile.GetMesg(MesgNum.ChronoShotSession))
+		{
+		}
 
-        public ChronoShotSessionMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public ChronoShotSessionMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the MinSpeed field
-        /// Units: m/s</summary>
-        /// <returns>Returns nullable float representing the MinSpeed field</returns>
-        public float? GetMinSpeed()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
+		///<summary>
+		/// Retrieves the MinSpeed field
+		/// Units: m/s</summary>
+		/// <returns>Returns nullable float representing the MinSpeed field</returns>
+		public float? MinSpeed
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set MinSpeed field
-        /// Units: m/s</summary>
-        /// <param name="minSpeed_">Nullable field value to be set</param>
-        public void SetMinSpeed(float? minSpeed_)
-        {
-            SetFieldValue(0, 0, minSpeed_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the MaxSpeed field
-        /// Units: m/s</summary>
-        /// <returns>Returns nullable float representing the MaxSpeed field</returns>
-        public float? GetMaxSpeed()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToSingle(val));
 
-            return (Convert.ToSingle(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set MaxSpeed field
-        /// Units: m/s</summary>
-        /// <param name="maxSpeed_">Nullable field value to be set</param>
-        public void SetMaxSpeed(float? maxSpeed_)
-        {
-            SetFieldValue(1, 0, maxSpeed_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the AvgSpeed field
-        /// Units: m/s</summary>
-        /// <returns>Returns nullable float representing the AvgSpeed field</returns>
-        public float? GetAvgSpeed()
-        {
-            Object val = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the MaxSpeed field
+		/// Units: m/s</summary>
+		/// <returns>Returns nullable float representing the MaxSpeed field</returns>
+		public float? MaxSpeed
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToSingle(val));
-            
-        }
+				return (Convert.ToSingle(val));
 
-        /// <summary>
-        /// Set AvgSpeed field
-        /// Units: m/s</summary>
-        /// <param name="avgSpeed_">Nullable field value to be set</param>
-        public void SetAvgSpeed(float? avgSpeed_)
-        {
-            SetFieldValue(2, 0, avgSpeed_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ShotCount field</summary>
-        /// <returns>Returns nullable ushort representing the ShotCount field</returns>
-        public ushort? GetShotCount()
-        {
-            Object val = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+		///<summary>
+		/// Retrieves the AvgSpeed field
+		/// Units: m/s</summary>
+		/// <returns>Returns nullable float representing the AvgSpeed field</returns>
+		public float? AvgSpeed
+		{
+			get
+			{
+				Object val = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set ShotCount field</summary>
-        /// <param name="shotCount_">Nullable field value to be set</param>
-        public void SetShotCount(ushort? shotCount_)
-        {
-            SetFieldValue(3, 0, shotCount_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ProjectileType field</summary>
-        /// <returns>Returns nullable ProjectileType enum representing the ProjectileType field</returns>
-        public ProjectileType? GetProjectileType()
-        {
-            object obj = GetFieldValue(4, 0, Fit.SubfieldIndexMainField);
-            ProjectileType? value = obj == null ? (ProjectileType?)null : (ProjectileType)obj;
-            return value;
-        }
+				return (Convert.ToSingle(val));
 
-        /// <summary>
-        /// Set ProjectileType field</summary>
-        /// <param name="projectileType_">Nullable field value to be set</param>
-        public void SetProjectileType(ProjectileType? projectileType_)
-        {
-            SetFieldValue(4, 0, projectileType_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the GrainWeight field
-        /// Units: gr</summary>
-        /// <returns>Returns nullable float representing the GrainWeight field</returns>
-        public float? GetGrainWeight()
-        {
-            Object val = GetFieldValue(5, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(2, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
+		///<summary>
+		/// Retrieves the ShotCount field</summary>
+		/// <returns>Returns nullable ushort representing the ShotCount field</returns>
+		public ushort? ShotCount
+		{
+			get
+			{
+				Object val = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set GrainWeight field
-        /// Units: gr</summary>
-        /// <param name="grainWeight_">Nullable field value to be set</param>
-        public void SetGrainWeight(float? grainWeight_)
-        {
-            SetFieldValue(5, 0, grainWeight_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the StandardDeviation field
-        /// Units: m/s</summary>
-        /// <returns>Returns nullable float representing the StandardDeviation field</returns>
-        public float? GetStandardDeviation()
-        {
-            Object val = GetFieldValue(6, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToUInt16(val));
 
-            return (Convert.ToSingle(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(3, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set StandardDeviation field
-        /// Units: m/s</summary>
-        /// <param name="standardDeviation_">Nullable field value to be set</param>
-        public void SetStandardDeviation(float? standardDeviation_)
-        {
-            SetFieldValue(6, 0, standardDeviation_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+		///<summary>
+		/// Retrieves the ProjectileType field</summary>
+		/// <returns>Returns nullable ProjectileType enum representing the ProjectileType field</returns>
+		public ProjectileType? ProjectileType
+		{
+			get
+			{
+				object obj = GetFieldValue(4, 0, Fit.SubfieldIndexMainField);
+				ProjectileType? value = obj == null ? (ProjectileType?)null : (ProjectileType)obj;
+				return value;
+			}
+			set
+			{
+				SetFieldValue(4, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the GrainWeight field
+		/// Units: gr</summary>
+		/// <returns>Returns nullable float representing the GrainWeight field</returns>
+		public float? GrainWeight
+		{
+			get
+			{
+				Object val = GetFieldValue(5, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToSingle(val));
+
+			}
+			set
+			{
+				SetFieldValue(5, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the StandardDeviation field
+		/// Units: m/s</summary>
+		/// <returns>Returns nullable float representing the StandardDeviation field</returns>
+		public float? StandardDeviation
+		{
+			get
+			{
+				Object val = GetFieldValue(6, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToSingle(val));
+
+			}
+			set
+			{
+				SetFieldValue(6, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

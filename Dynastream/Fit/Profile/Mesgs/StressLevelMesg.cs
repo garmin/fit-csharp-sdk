@@ -21,85 +21,81 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the StressLevel profile message.
-    /// </summary>
-    public class StressLevelMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the StressLevel profile message.
+	/// </summary>
+	public class StressLevelMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="StressLevelMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte StressLevelValue = 0;
-            public const byte StressLevelTime = 1;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="StressLevelMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte StressLevelValue = 0;
+			public const byte StressLevelTime = 1;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public StressLevelMesg() : base(Profile.GetMesg(MesgNum.StressLevel))
-        {
-        }
+		#region Constructors
+		public StressLevelMesg() : base(Profile.GetMesg(MesgNum.StressLevel))
+		{
+		}
 
-        public StressLevelMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public StressLevelMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the StressLevelValue field</summary>
-        /// <returns>Returns nullable short representing the StressLevelValue field</returns>
-        public short? GetStressLevelValue()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the StressLevelValue field</summary>
+		/// <returns>Returns nullable short representing the StressLevelValue field</returns>
+		public short? StressLevelValue
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToInt16(val));
-            
-        }
+				return (Convert.ToInt16(val));
 
-        /// <summary>
-        /// Set StressLevelValue field</summary>
-        /// <param name="stressLevelValue_">Nullable field value to be set</param>
-        public void SetStressLevelValue(short? stressLevelValue_)
-        {
-            SetFieldValue(0, 0, stressLevelValue_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the StressLevelTime field
-        /// Units: s
-        /// Comment: Time stress score was calculated</summary>
-        /// <returns>Returns DateTime representing the StressLevelTime field</returns>
-        public DateTime GetStressLevelTime()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+		///<summary>
+		/// Retrieves the StressLevelTime field
+		/// Units: s
+		/// Comment: Time stress score was calculated</summary>
+		/// <returns>Returns DateTime representing the StressLevelTime field</returns>
+		public DateTime StressLevelTime
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set StressLevelTime field
-        /// Units: s
-        /// Comment: Time stress score was calculated</summary>
-        /// <param name="stressLevelTime_">Nullable field value to be set</param>
-        public void SetStressLevelTime(DateTime stressLevelTime_)
-        {
-            SetFieldValue(1, 0, stressLevelTime_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+				return TimestampToDateTime(Convert.ToUInt32(val));
+
+			}
+			set
+			{
+				SetFieldValue(1, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

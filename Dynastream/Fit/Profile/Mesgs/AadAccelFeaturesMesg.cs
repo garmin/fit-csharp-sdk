@@ -21,191 +21,178 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the AadAccelFeatures profile message.
-    /// </summary>
-    public class AadAccelFeaturesMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the AadAccelFeatures profile message.
+	/// </summary>
+	public class AadAccelFeaturesMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="AadAccelFeaturesMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte Time = 0;
-            public const byte EnergyTotal = 1;
-            public const byte ZeroCrossCnt = 2;
-            public const byte Instance = 3;
-            public const byte TimeAboveThreshold = 4;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="AadAccelFeaturesMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte Time = 0;
+			public const byte EnergyTotal = 1;
+			public const byte ZeroCrossCnt = 2;
+			public const byte Instance = 3;
+			public const byte TimeAboveThreshold = 4;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public AadAccelFeaturesMesg() : base(Profile.GetMesg(MesgNum.AadAccelFeatures))
-        {
-        }
+		#region Constructors
+		public AadAccelFeaturesMesg() : base(Profile.GetMesg(MesgNum.AadAccelFeatures))
+		{
+		}
 
-        public AadAccelFeaturesMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public AadAccelFeaturesMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Time field
-        /// Units: s
-        /// Comment: Time interval length in seconds</summary>
-        /// <returns>Returns nullable ushort representing the Time field</returns>
-        public ushort? GetTime()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+		///<summary>
+		/// Retrieves the Time field
+		/// Units: s
+		/// Comment: Time interval length in seconds</summary>
+		/// <returns>Returns nullable ushort representing the Time field</returns>
+		public ushort? Time
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set Time field
-        /// Units: s
-        /// Comment: Time interval length in seconds</summary>
-        /// <param name="time_">Nullable field value to be set</param>
-        public void SetTime(ushort? time_)
-        {
-            SetFieldValue(0, 0, time_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the EnergyTotal field
-        /// Comment: Total accelerometer energy in the interval</summary>
-        /// <returns>Returns nullable uint representing the EnergyTotal field</returns>
-        public uint? GetEnergyTotal()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToUInt16(val));
 
-            return (Convert.ToUInt32(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set EnergyTotal field
-        /// Comment: Total accelerometer energy in the interval</summary>
-        /// <param name="energyTotal_">Nullable field value to be set</param>
-        public void SetEnergyTotal(uint? energyTotal_)
-        {
-            SetFieldValue(1, 0, energyTotal_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ZeroCrossCnt field
-        /// Comment: Count of zero crossings</summary>
-        /// <returns>Returns nullable ushort representing the ZeroCrossCnt field</returns>
-        public ushort? GetZeroCrossCnt()
-        {
-            Object val = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the EnergyTotal field
+		/// Comment: Total accelerometer energy in the interval</summary>
+		/// <returns>Returns nullable uint representing the EnergyTotal field</returns>
+		public uint? EnergyTotal
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+				return (Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set ZeroCrossCnt field
-        /// Comment: Count of zero crossings</summary>
-        /// <param name="zeroCrossCnt_">Nullable field value to be set</param>
-        public void SetZeroCrossCnt(ushort? zeroCrossCnt_)
-        {
-            SetFieldValue(2, 0, zeroCrossCnt_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Instance field
-        /// Comment: Instance ID of zero crossing algorithm</summary>
-        /// <returns>Returns nullable byte representing the Instance field</returns>
-        public byte? GetInstance()
-        {
-            Object val = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToByte(val));
-            
-        }
+		///<summary>
+		/// Retrieves the ZeroCrossCnt field
+		/// Comment: Count of zero crossings</summary>
+		/// <returns>Returns nullable ushort representing the ZeroCrossCnt field</returns>
+		public ushort? ZeroCrossCnt
+		{
+			get
+			{
+				Object val = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set Instance field
-        /// Comment: Instance ID of zero crossing algorithm</summary>
-        /// <param name="instance_">Nullable field value to be set</param>
-        public void SetInstance(byte? instance_)
-        {
-            SetFieldValue(3, 0, instance_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the TimeAboveThreshold field
-        /// Units: s
-        /// Comment: Total accelerometer time above threshold in the interval</summary>
-        /// <returns>Returns nullable float representing the TimeAboveThreshold field</returns>
-        public float? GetTimeAboveThreshold()
-        {
-            Object val = GetFieldValue(4, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToUInt16(val));
 
-            return (Convert.ToSingle(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(2, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set TimeAboveThreshold field
-        /// Units: s
-        /// Comment: Total accelerometer time above threshold in the interval</summary>
-        /// <param name="timeAboveThreshold_">Nullable field value to be set</param>
-        public void SetTimeAboveThreshold(float? timeAboveThreshold_)
-        {
-            SetFieldValue(4, 0, timeAboveThreshold_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+		///<summary>
+		/// Retrieves the Instance field
+		/// Comment: Instance ID of zero crossing algorithm</summary>
+		/// <returns>Returns nullable byte representing the Instance field</returns>
+		public byte? Instance
+		{
+			get
+			{
+				Object val = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToByte(val));
+
+			}
+			set
+			{
+				SetFieldValue(3, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the TimeAboveThreshold field
+		/// Units: s
+		/// Comment: Total accelerometer time above threshold in the interval</summary>
+		/// <returns>Returns nullable float representing the TimeAboveThreshold field</returns>
+		public float? TimeAboveThreshold
+		{
+			get
+			{
+				Object val = GetFieldValue(4, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToSingle(val));
+
+			}
+			set
+			{
+				SetFieldValue(4, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

@@ -21,81 +21,79 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the FileCreator profile message.
-    /// </summary>
-    public class FileCreatorMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the FileCreator profile message.
+	/// </summary>
+	public class FileCreatorMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="FileCreatorMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte SoftwareVersion = 0;
-            public const byte HardwareVersion = 1;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="FileCreatorMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte SoftwareVersion = 0;
+			public const byte HardwareVersion = 1;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public FileCreatorMesg() : base(Profile.GetMesg(MesgNum.FileCreator))
-        {
-        }
+		#region Constructors
+		public FileCreatorMesg() : base(Profile.GetMesg(MesgNum.FileCreator))
+		{
+		}
 
-        public FileCreatorMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public FileCreatorMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the SoftwareVersion field</summary>
-        /// <returns>Returns nullable ushort representing the SoftwareVersion field</returns>
-        public ushort? GetSoftwareVersion()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the SoftwareVersion field</summary>
+		/// <returns>Returns nullable ushort representing the SoftwareVersion field</returns>
+		public ushort? SoftwareVersion
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+				return (Convert.ToUInt16(val));
 
-        /// <summary>
-        /// Set SoftwareVersion field</summary>
-        /// <param name="softwareVersion_">Nullable field value to be set</param>
-        public void SetSoftwareVersion(ushort? softwareVersion_)
-        {
-            SetFieldValue(0, 0, softwareVersion_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the HardwareVersion field</summary>
-        /// <returns>Returns nullable byte representing the HardwareVersion field</returns>
-        public byte? GetHardwareVersion()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToByte(val));
-            
-        }
+		///<summary>
+		/// Retrieves the HardwareVersion field</summary>
+		/// <returns>Returns nullable byte representing the HardwareVersion field</returns>
+		public byte? HardwareVersion
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set HardwareVersion field</summary>
-        /// <param name="hardwareVersion_">Nullable field value to be set</param>
-        public void SetHardwareVersion(byte? hardwareVersion_)
-        {
-            SetFieldValue(1, 0, hardwareVersion_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+				return (Convert.ToByte(val));
+
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

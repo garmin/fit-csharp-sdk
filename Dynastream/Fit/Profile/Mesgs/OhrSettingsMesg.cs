@@ -21,78 +21,75 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the OhrSettings profile message.
-    /// </summary>
-    public class OhrSettingsMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the OhrSettings profile message.
+	/// </summary>
+	public class OhrSettingsMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="OhrSettingsMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte Enabled = 0;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="OhrSettingsMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte Enabled = 0;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public OhrSettingsMesg() : base(Profile.GetMesg(MesgNum.OhrSettings))
-        {
-        }
+		#region Constructors
+		public OhrSettingsMesg() : base(Profile.GetMesg(MesgNum.OhrSettings))
+		{
+		}
 
-        public OhrSettingsMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public OhrSettingsMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field
-        /// Units: s</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field
+		/// Units: s</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field
-        /// Units: s</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Enabled field</summary>
-        /// <returns>Returns nullable Switch enum representing the Enabled field</returns>
-        public Switch? GetEnabled()
-        {
-            object obj = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            Switch? value = obj == null ? (Switch?)null : (Switch)obj;
-            return value;
-        }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set Enabled field</summary>
-        /// <param name="enabled_">Nullable field value to be set</param>
-        public void SetEnabled(Switch? enabled_)
-        {
-            SetFieldValue(0, 0, enabled_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+		///<summary>
+		/// Retrieves the Enabled field</summary>
+		/// <returns>Returns nullable Switch enum representing the Enabled field</returns>
+		public Switch? Enabled
+		{
+			get
+			{
+				object obj = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				Switch? value = obj == null ? (Switch?)null : (Switch)obj;
+				return value;
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

@@ -21,155 +21,149 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the DeviceAuxBatteryInfo profile message.
-    /// </summary>
-    public class DeviceAuxBatteryInfoMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the DeviceAuxBatteryInfo profile message.
+	/// </summary>
+	public class DeviceAuxBatteryInfoMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="DeviceAuxBatteryInfoMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte DeviceIndex = 0;
-            public const byte BatteryVoltage = 1;
-            public const byte BatteryStatus = 2;
-            public const byte BatteryIdentifier = 3;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="DeviceAuxBatteryInfoMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte DeviceIndex = 0;
+			public const byte BatteryVoltage = 1;
+			public const byte BatteryStatus = 2;
+			public const byte BatteryIdentifier = 3;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public DeviceAuxBatteryInfoMesg() : base(Profile.GetMesg(MesgNum.DeviceAuxBatteryInfo))
-        {
-        }
+		#region Constructors
+		public DeviceAuxBatteryInfoMesg() : base(Profile.GetMesg(MesgNum.DeviceAuxBatteryInfo))
+		{
+		}
 
-        public DeviceAuxBatteryInfoMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public DeviceAuxBatteryInfoMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the DeviceIndex field</summary>
-        /// <returns>Returns nullable byte representing the DeviceIndex field</returns>
-        public byte? GetDeviceIndex()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToByte(val));
-            
-        }
+		///<summary>
+		/// Retrieves the DeviceIndex field</summary>
+		/// <returns>Returns nullable byte representing the DeviceIndex field</returns>
+		public byte? DeviceIndex
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set DeviceIndex field</summary>
-        /// <param name="deviceIndex_">Nullable field value to be set</param>
-        public void SetDeviceIndex(byte? deviceIndex_)
-        {
-            SetFieldValue(0, 0, deviceIndex_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the BatteryVoltage field
-        /// Units: V</summary>
-        /// <returns>Returns nullable float representing the BatteryVoltage field</returns>
-        public float? GetBatteryVoltage()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToByte(val));
 
-            return (Convert.ToSingle(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set BatteryVoltage field
-        /// Units: V</summary>
-        /// <param name="batteryVoltage_">Nullable field value to be set</param>
-        public void SetBatteryVoltage(float? batteryVoltage_)
-        {
-            SetFieldValue(1, 0, batteryVoltage_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the BatteryStatus field</summary>
-        /// <returns>Returns nullable byte representing the BatteryStatus field</returns>
-        public byte? GetBatteryStatus()
-        {
-            Object val = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the BatteryVoltage field
+		/// Units: V</summary>
+		/// <returns>Returns nullable float representing the BatteryVoltage field</returns>
+		public float? BatteryVoltage
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToByte(val));
-            
-        }
+				return (Convert.ToSingle(val));
 
-        /// <summary>
-        /// Set BatteryStatus field</summary>
-        /// <param name="batteryStatus_">Nullable field value to be set</param>
-        public void SetBatteryStatus(byte? batteryStatus_)
-        {
-            SetFieldValue(2, 0, batteryStatus_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the BatteryIdentifier field</summary>
-        /// <returns>Returns nullable byte representing the BatteryIdentifier field</returns>
-        public byte? GetBatteryIdentifier()
-        {
-            Object val = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToByte(val));
-            
-        }
+		///<summary>
+		/// Retrieves the BatteryStatus field</summary>
+		/// <returns>Returns nullable byte representing the BatteryStatus field</returns>
+		public byte? BatteryStatus
+		{
+			get
+			{
+				Object val = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set BatteryIdentifier field</summary>
-        /// <param name="batteryIdentifier_">Nullable field value to be set</param>
-        public void SetBatteryIdentifier(byte? batteryIdentifier_)
-        {
-            SetFieldValue(3, 0, batteryIdentifier_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+				return (Convert.ToByte(val));
+
+			}
+			set
+			{
+				SetFieldValue(2, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the BatteryIdentifier field</summary>
+		/// <returns>Returns nullable byte representing the BatteryIdentifier field</returns>
+		public byte? BatteryIdentifier
+		{
+			get
+			{
+				Object val = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToByte(val));
+
+			}
+			set
+			{
+				SetFieldValue(3, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

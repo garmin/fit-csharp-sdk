@@ -21,137 +21,131 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the SlaveDevice profile message.
-    /// </summary>
-    public class SlaveDeviceMesg : Mesg
-    {
-        #region Fields
-        static class ProductSubfield
-        {
-            public static ushort FaveroProduct = 0;
-            public static ushort GarminProduct = 1;
-            public static ushort Subfields = 2;
-            public static ushort Active = Fit.SubfieldIndexActiveSubfield;
-            public static ushort MainField = Fit.SubfieldIndexMainField;
-        }
-        #endregion
+	/// <summary>
+	/// Implements the SlaveDevice profile message.
+	/// </summary>
+	public class SlaveDeviceMesg : Mesg
+	{
+		#region Fields
+		static class ProductSubfield
+		{
+			public static ushort FaveroProduct = 0;
+			public static ushort GarminProduct = 1;
+			public static ushort Subfields = 2;
+			public static ushort Active = Fit.SubfieldIndexActiveSubfield;
+			public static ushort MainField = Fit.SubfieldIndexMainField;
+		}
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="SlaveDeviceMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Manufacturer = 0;
-            public const byte Product = 1;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="SlaveDeviceMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Manufacturer = 0;
+			public const byte Product = 1;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public SlaveDeviceMesg() : base(Profile.GetMesg(MesgNum.SlaveDevice))
-        {
-        }
+		#region Constructors
+		public SlaveDeviceMesg() : base(Profile.GetMesg(MesgNum.SlaveDevice))
+		{
+		}
 
-        public SlaveDeviceMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public SlaveDeviceMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Manufacturer field</summary>
-        /// <returns>Returns nullable ushort representing the Manufacturer field</returns>
-        public ushort? GetManufacturer()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Manufacturer field</summary>
+		/// <returns>Returns nullable ushort representing the Manufacturer field</returns>
+		public ushort? Manufacturer
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+				return (Convert.ToUInt16(val));
 
-        /// <summary>
-        /// Set Manufacturer field</summary>
-        /// <param name="manufacturer_">Nullable field value to be set</param>
-        public void SetManufacturer(ushort? manufacturer_)
-        {
-            SetFieldValue(0, 0, manufacturer_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Product field</summary>
-        /// <returns>Returns nullable ushort representing the Product field</returns>
-        public ushort? GetProduct()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+		///<summary>
+		/// Retrieves the Product field</summary>
+		/// <returns>Returns nullable ushort representing the Product field</returns>
+		public ushort? Product
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set Product field</summary>
-        /// <param name="product_">Nullable field value to be set</param>
-        public void SetProduct(ushort? product_)
-        {
-            SetFieldValue(1, 0, product_, Fit.SubfieldIndexMainField);
-        }
-        
+				return (Convert.ToUInt16(val));
 
-        /// <summary>
-        /// Retrieves the FaveroProduct subfield</summary>
-        /// <returns>Nullable ushort representing the FaveroProduct subfield</returns>
-        public ushort? GetFaveroProduct()
-        {
-            Object val = GetFieldValue(1, 0, ProductSubfield.FaveroProduct);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
 
-        /// <summary>
-        ///
-        /// Set FaveroProduct subfield</summary>
-        /// <param name="faveroProduct">Subfield value to be set</param>
-        public void SetFaveroProduct(ushort? faveroProduct)
-        {
-            SetFieldValue(1, 0, faveroProduct, ProductSubfield.FaveroProduct);
-        }
+		/// <summary>
+		/// Retrieves the FaveroProduct subfield</summary>
+		/// <returns>Nullable ushort representing the FaveroProduct subfield</returns>
+		public ushort? FaveroProduct
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, ProductSubfield.FaveroProduct);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Retrieves the GarminProduct subfield</summary>
-        /// <returns>Nullable ushort representing the GarminProduct subfield</returns>
-        public ushort? GetGarminProduct()
-        {
-            Object val = GetFieldValue(1, 0, ProductSubfield.GarminProduct);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToUInt16(val));
 
-            return (Convert.ToUInt16(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, ProductSubfield.FaveroProduct);
+			}
+		}
 
-        /// <summary>
-        ///
-        /// Set GarminProduct subfield</summary>
-        /// <param name="garminProduct">Subfield value to be set</param>
-        public void SetGarminProduct(ushort? garminProduct)
-        {
-            SetFieldValue(1, 0, garminProduct, ProductSubfield.GarminProduct);
-        }
-        #endregion // Methods
-    } // Class
+		/// <summary>
+		/// Retrieves the GarminProduct subfield</summary>
+		/// <returns>Nullable ushort representing the GarminProduct subfield</returns>
+		public ushort? GarminProduct
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, ProductSubfield.GarminProduct);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToUInt16(val));
+
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, ProductSubfield.GarminProduct);
+			}
+		}
+		#endregion // Methods
+	} // Class
 } // namespace

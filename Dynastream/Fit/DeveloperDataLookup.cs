@@ -51,7 +51,7 @@ namespace Dynastream.Fit
 
         public void Add(DeveloperDataIdMesg mesg)
         {
-            byte? index = mesg.GetDeveloperDataIndex();
+            byte? index = mesg.DeveloperDataIndex;
             if (index == null)
                 return;
 
@@ -75,8 +75,8 @@ namespace Dynastream.Fit
         {
             DeveloperFieldDescription desc = null;
 
-            byte? developerDataIndex = mesg.GetDeveloperDataIndex();
-            byte? fieldDefinitionNumber = mesg.GetFieldDefinitionNumber();
+            byte? developerDataIndex = mesg.DeveloperDataIndex;
+            byte? fieldDefinitionNumber = mesg.FieldDefinitionNumber;
             if ((developerDataIndex != null) &&
                 (fieldDefinitionNumber != null))
             {

@@ -21,125 +21,120 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the HsaConfigurationData profile message.
-    /// </summary>
-    public class HsaConfigurationDataMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the HsaConfigurationData profile message.
+	/// </summary>
+	public class HsaConfigurationDataMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="HsaConfigurationDataMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte Data = 0;
-            public const byte DataSize = 1;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="HsaConfigurationDataMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte Data = 0;
+			public const byte DataSize = 1;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public HsaConfigurationDataMesg() : base(Profile.GetMesg(MesgNum.HsaConfigurationData))
-        {
-        }
+		#region Constructors
+		public HsaConfigurationDataMesg() : base(Profile.GetMesg(MesgNum.HsaConfigurationData))
+		{
+		}
 
-        public HsaConfigurationDataMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public HsaConfigurationDataMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field
-        /// Units: s
-        /// Comment: Encoded configuration data</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field
+		/// Units: s
+		/// Comment: Encoded configuration data</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field
-        /// Units: s
-        /// Comment: Encoded configuration data</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>returns number of elements in field Data</returns>
-        public int GetNumData()
-        {
-            return GetNumFieldValues(0, Fit.SubfieldIndexMainField);
-        }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-        ///<summary>
-        /// Retrieves the Data field
-        /// Comment: Encoded configuration data. Health SDK use only</summary>
-        /// <param name="index">0 based index of Data element to retrieve</param>
-        /// <returns>Returns nullable byte representing the Data field</returns>
-        public byte? GetData(int index)
-        {
-            Object val = GetFieldValue(0, index, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
 
-            return (Convert.ToByte(val));
-            
-        }
+		/// <summary>
+		///
+		/// </summary>
+		/// <returns>returns number of elements in field Data</returns>
+		public int GetNumData()
+		{
+			return GetNumFieldValues(0, Fit.SubfieldIndexMainField);
+		}
 
-        /// <summary>
-        /// Set Data field
-        /// Comment: Encoded configuration data. Health SDK use only</summary>
-        /// <param name="index">0 based index of data</param>
-        /// <param name="data_">Nullable field value to be set</param>
-        public void SetData(int index, byte? data_)
-        {
-            SetFieldValue(0, index, data_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the DataSize field
-        /// Comment: Size in bytes of data field</summary>
-        /// <returns>Returns nullable byte representing the DataSize field</returns>
-        public byte? GetDataSize()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the Data field
+		/// Comment: Encoded configuration data. Health SDK use only</summary>
+		/// <param name="index">0 based index of Data element to retrieve</param>
+		/// <returns>Returns nullable byte representing the Data field</returns>
+		public byte? GetData(int index)
+		{
+			Object val = GetFieldValue(0, index, Fit.SubfieldIndexMainField);
+			if (val == null)
+			{
+				return null;
+			}
 
-            return (Convert.ToByte(val));
-            
-        }
+			return (Convert.ToByte(val));
 
-        /// <summary>
-        /// Set DataSize field
-        /// Comment: Size in bytes of data field</summary>
-        /// <param name="dataSize_">Nullable field value to be set</param>
-        public void SetDataSize(byte? dataSize_)
-        {
-            SetFieldValue(1, 0, dataSize_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+		}
+
+		/// <summary>
+		/// Set Data field
+		/// Comment: Encoded configuration data. Health SDK use only</summary>
+		/// <param name="index">0 based index of data</param>
+		/// <param name="data_">Nullable field value to be set</param>
+		public void SetData(int index, byte? data_)
+		{
+			SetFieldValue(0, index, data_, Fit.SubfieldIndexMainField);
+		}
+
+		///<summary>
+		/// Retrieves the DataSize field
+		/// Comment: Size in bytes of data field</summary>
+		/// <returns>Returns nullable byte representing the DataSize field</returns>
+		public byte? DataSize
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToByte(val));
+
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

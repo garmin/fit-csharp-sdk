@@ -21,386 +21,361 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the SplitSummary profile message.
-    /// </summary>
-    public class SplitSummaryMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the SplitSummary profile message.
+	/// </summary>
+	public class SplitSummaryMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="SplitSummaryMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte MessageIndex = 254;
-            public const byte SplitType = 0;
-            public const byte NumSplits = 3;
-            public const byte TotalTimerTime = 4;
-            public const byte TotalDistance = 5;
-            public const byte AvgSpeed = 6;
-            public const byte MaxSpeed = 7;
-            public const byte TotalAscent = 8;
-            public const byte TotalDescent = 9;
-            public const byte AvgHeartRate = 10;
-            public const byte MaxHeartRate = 11;
-            public const byte AvgVertSpeed = 12;
-            public const byte TotalCalories = 13;
-            public const byte TotalMovingTime = 77;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="SplitSummaryMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte MessageIndex = 254;
+			public const byte SplitType = 0;
+			public const byte NumSplits = 3;
+			public const byte TotalTimerTime = 4;
+			public const byte TotalDistance = 5;
+			public const byte AvgSpeed = 6;
+			public const byte MaxSpeed = 7;
+			public const byte TotalAscent = 8;
+			public const byte TotalDescent = 9;
+			public const byte AvgHeartRate = 10;
+			public const byte MaxHeartRate = 11;
+			public const byte AvgVertSpeed = 12;
+			public const byte TotalCalories = 13;
+			public const byte TotalMovingTime = 77;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public SplitSummaryMesg() : base(Profile.GetMesg(MesgNum.SplitSummary))
-        {
-        }
+		#region Constructors
+		public SplitSummaryMesg() : base(Profile.GetMesg(MesgNum.SplitSummary))
+		{
+		}
 
-        public SplitSummaryMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public SplitSummaryMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the MessageIndex field</summary>
-        /// <returns>Returns nullable ushort representing the MessageIndex field</returns>
-        public ushort? GetMessageIndex()
-        {
-            Object val = GetFieldValue(254, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the MessageIndex field</summary>
+		/// <returns>Returns nullable ushort representing the MessageIndex field</returns>
+		public ushort? MessageIndex
+		{
+			get
+			{
+				Object val = GetFieldValue(254, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+				return (Convert.ToUInt16(val));
 
-        /// <summary>
-        /// Set MessageIndex field</summary>
-        /// <param name="messageIndex_">Nullable field value to be set</param>
-        public void SetMessageIndex(ushort? messageIndex_)
-        {
-            SetFieldValue(254, 0, messageIndex_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the SplitType field</summary>
-        /// <returns>Returns nullable SplitType enum representing the SplitType field</returns>
-        public SplitType? GetSplitType()
-        {
-            object obj = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            SplitType? value = obj == null ? (SplitType?)null : (SplitType)obj;
-            return value;
-        }
+			}
+			set
+			{
+				SetFieldValue(254, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set SplitType field</summary>
-        /// <param name="splitType_">Nullable field value to be set</param>
-        public void SetSplitType(SplitType? splitType_)
-        {
-            SetFieldValue(0, 0, splitType_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the NumSplits field</summary>
-        /// <returns>Returns nullable ushort representing the NumSplits field</returns>
-        public ushort? GetNumSplits()
-        {
-            Object val = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the SplitType field</summary>
+		/// <returns>Returns nullable SplitType enum representing the SplitType field</returns>
+		public SplitType? SplitType
+		{
+			get
+			{
+				object obj = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				SplitType? value = obj == null ? (SplitType?)null : (SplitType)obj;
+				return value;
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+		///<summary>
+		/// Retrieves the NumSplits field</summary>
+		/// <returns>Returns nullable ushort representing the NumSplits field</returns>
+		public ushort? NumSplits
+		{
+			get
+			{
+				Object val = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set NumSplits field</summary>
-        /// <param name="numSplits_">Nullable field value to be set</param>
-        public void SetNumSplits(ushort? numSplits_)
-        {
-            SetFieldValue(3, 0, numSplits_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the TotalTimerTime field
-        /// Units: s</summary>
-        /// <returns>Returns nullable float representing the TotalTimerTime field</returns>
-        public float? GetTotalTimerTime()
-        {
-            Object val = GetFieldValue(4, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToUInt16(val));
 
-            return (Convert.ToSingle(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(3, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set TotalTimerTime field
-        /// Units: s</summary>
-        /// <param name="totalTimerTime_">Nullable field value to be set</param>
-        public void SetTotalTimerTime(float? totalTimerTime_)
-        {
-            SetFieldValue(4, 0, totalTimerTime_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the TotalDistance field
-        /// Units: m</summary>
-        /// <returns>Returns nullable float representing the TotalDistance field</returns>
-        public float? GetTotalDistance()
-        {
-            Object val = GetFieldValue(5, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the TotalTimerTime field
+		/// Units: s</summary>
+		/// <returns>Returns nullable float representing the TotalTimerTime field</returns>
+		public float? TotalTimerTime
+		{
+			get
+			{
+				Object val = GetFieldValue(4, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToSingle(val));
-            
-        }
+				return (Convert.ToSingle(val));
 
-        /// <summary>
-        /// Set TotalDistance field
-        /// Units: m</summary>
-        /// <param name="totalDistance_">Nullable field value to be set</param>
-        public void SetTotalDistance(float? totalDistance_)
-        {
-            SetFieldValue(5, 0, totalDistance_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the AvgSpeed field
-        /// Units: m/s</summary>
-        /// <returns>Returns nullable float representing the AvgSpeed field</returns>
-        public float? GetAvgSpeed()
-        {
-            Object val = GetFieldValue(6, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(4, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
+		///<summary>
+		/// Retrieves the TotalDistance field
+		/// Units: m</summary>
+		/// <returns>Returns nullable float representing the TotalDistance field</returns>
+		public float? TotalDistance
+		{
+			get
+			{
+				Object val = GetFieldValue(5, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set AvgSpeed field
-        /// Units: m/s</summary>
-        /// <param name="avgSpeed_">Nullable field value to be set</param>
-        public void SetAvgSpeed(float? avgSpeed_)
-        {
-            SetFieldValue(6, 0, avgSpeed_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the MaxSpeed field
-        /// Units: m/s</summary>
-        /// <returns>Returns nullable float representing the MaxSpeed field</returns>
-        public float? GetMaxSpeed()
-        {
-            Object val = GetFieldValue(7, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToSingle(val));
 
-            return (Convert.ToSingle(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(5, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set MaxSpeed field
-        /// Units: m/s</summary>
-        /// <param name="maxSpeed_">Nullable field value to be set</param>
-        public void SetMaxSpeed(float? maxSpeed_)
-        {
-            SetFieldValue(7, 0, maxSpeed_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the TotalAscent field
-        /// Units: m</summary>
-        /// <returns>Returns nullable ushort representing the TotalAscent field</returns>
-        public ushort? GetTotalAscent()
-        {
-            Object val = GetFieldValue(8, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the AvgSpeed field
+		/// Units: m/s</summary>
+		/// <returns>Returns nullable float representing the AvgSpeed field</returns>
+		public float? AvgSpeed
+		{
+			get
+			{
+				Object val = GetFieldValue(6, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+				return (Convert.ToSingle(val));
 
-        /// <summary>
-        /// Set TotalAscent field
-        /// Units: m</summary>
-        /// <param name="totalAscent_">Nullable field value to be set</param>
-        public void SetTotalAscent(ushort? totalAscent_)
-        {
-            SetFieldValue(8, 0, totalAscent_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the TotalDescent field
-        /// Units: m</summary>
-        /// <returns>Returns nullable ushort representing the TotalDescent field</returns>
-        public ushort? GetTotalDescent()
-        {
-            Object val = GetFieldValue(9, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(6, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+		///<summary>
+		/// Retrieves the MaxSpeed field
+		/// Units: m/s</summary>
+		/// <returns>Returns nullable float representing the MaxSpeed field</returns>
+		public float? MaxSpeed
+		{
+			get
+			{
+				Object val = GetFieldValue(7, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set TotalDescent field
-        /// Units: m</summary>
-        /// <param name="totalDescent_">Nullable field value to be set</param>
-        public void SetTotalDescent(ushort? totalDescent_)
-        {
-            SetFieldValue(9, 0, totalDescent_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the AvgHeartRate field
-        /// Units: bpm</summary>
-        /// <returns>Returns nullable byte representing the AvgHeartRate field</returns>
-        public byte? GetAvgHeartRate()
-        {
-            Object val = GetFieldValue(10, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToSingle(val));
 
-            return (Convert.ToByte(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(7, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set AvgHeartRate field
-        /// Units: bpm</summary>
-        /// <param name="avgHeartRate_">Nullable field value to be set</param>
-        public void SetAvgHeartRate(byte? avgHeartRate_)
-        {
-            SetFieldValue(10, 0, avgHeartRate_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the MaxHeartRate field
-        /// Units: bpm</summary>
-        /// <returns>Returns nullable byte representing the MaxHeartRate field</returns>
-        public byte? GetMaxHeartRate()
-        {
-            Object val = GetFieldValue(11, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the TotalAscent field
+		/// Units: m</summary>
+		/// <returns>Returns nullable ushort representing the TotalAscent field</returns>
+		public ushort? TotalAscent
+		{
+			get
+			{
+				Object val = GetFieldValue(8, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToByte(val));
-            
-        }
+				return (Convert.ToUInt16(val));
 
-        /// <summary>
-        /// Set MaxHeartRate field
-        /// Units: bpm</summary>
-        /// <param name="maxHeartRate_">Nullable field value to be set</param>
-        public void SetMaxHeartRate(byte? maxHeartRate_)
-        {
-            SetFieldValue(11, 0, maxHeartRate_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the AvgVertSpeed field
-        /// Units: m/s</summary>
-        /// <returns>Returns nullable float representing the AvgVertSpeed field</returns>
-        public float? GetAvgVertSpeed()
-        {
-            Object val = GetFieldValue(12, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(8, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
+		///<summary>
+		/// Retrieves the TotalDescent field
+		/// Units: m</summary>
+		/// <returns>Returns nullable ushort representing the TotalDescent field</returns>
+		public ushort? TotalDescent
+		{
+			get
+			{
+				Object val = GetFieldValue(9, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set AvgVertSpeed field
-        /// Units: m/s</summary>
-        /// <param name="avgVertSpeed_">Nullable field value to be set</param>
-        public void SetAvgVertSpeed(float? avgVertSpeed_)
-        {
-            SetFieldValue(12, 0, avgVertSpeed_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the TotalCalories field
-        /// Units: kcal</summary>
-        /// <returns>Returns nullable uint representing the TotalCalories field</returns>
-        public uint? GetTotalCalories()
-        {
-            Object val = GetFieldValue(13, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToUInt16(val));
 
-            return (Convert.ToUInt32(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(9, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set TotalCalories field
-        /// Units: kcal</summary>
-        /// <param name="totalCalories_">Nullable field value to be set</param>
-        public void SetTotalCalories(uint? totalCalories_)
-        {
-            SetFieldValue(13, 0, totalCalories_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the TotalMovingTime field
-        /// Units: s</summary>
-        /// <returns>Returns nullable float representing the TotalMovingTime field</returns>
-        public float? GetTotalMovingTime()
-        {
-            Object val = GetFieldValue(77, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the AvgHeartRate field
+		/// Units: bpm</summary>
+		/// <returns>Returns nullable byte representing the AvgHeartRate field</returns>
+		public byte? AvgHeartRate
+		{
+			get
+			{
+				Object val = GetFieldValue(10, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToSingle(val));
-            
-        }
+				return (Convert.ToByte(val));
 
-        /// <summary>
-        /// Set TotalMovingTime field
-        /// Units: s</summary>
-        /// <param name="totalMovingTime_">Nullable field value to be set</param>
-        public void SetTotalMovingTime(float? totalMovingTime_)
-        {
-            SetFieldValue(77, 0, totalMovingTime_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+			}
+			set
+			{
+				SetFieldValue(10, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the MaxHeartRate field
+		/// Units: bpm</summary>
+		/// <returns>Returns nullable byte representing the MaxHeartRate field</returns>
+		public byte? MaxHeartRate
+		{
+			get
+			{
+				Object val = GetFieldValue(11, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToByte(val));
+
+			}
+			set
+			{
+				SetFieldValue(11, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the AvgVertSpeed field
+		/// Units: m/s</summary>
+		/// <returns>Returns nullable float representing the AvgVertSpeed field</returns>
+		public float? AvgVertSpeed
+		{
+			get
+			{
+				Object val = GetFieldValue(12, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToSingle(val));
+
+			}
+			set
+			{
+				SetFieldValue(12, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the TotalCalories field
+		/// Units: kcal</summary>
+		/// <returns>Returns nullable uint representing the TotalCalories field</returns>
+		public uint? TotalCalories
+		{
+			get
+			{
+				Object val = GetFieldValue(13, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToUInt32(val));
+
+			}
+			set
+			{
+				SetFieldValue(13, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the TotalMovingTime field
+		/// Units: s</summary>
+		/// <returns>Returns nullable float representing the TotalMovingTime field</returns>
+		public float? TotalMovingTime
+		{
+			get
+			{
+				Object val = GetFieldValue(77, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToSingle(val));
+
+			}
+			set
+			{
+				SetFieldValue(77, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

@@ -21,159 +21,151 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the SkinTempOvernight profile message.
-    /// </summary>
-    public class SkinTempOvernightMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the SkinTempOvernight profile message.
+	/// </summary>
+	public class SkinTempOvernightMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="SkinTempOvernightMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte LocalTimestamp = 0;
-            public const byte AverageDeviation = 1;
-            public const byte Average7DayDeviation = 2;
-            public const byte NightlyValue = 4;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="SkinTempOvernightMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte LocalTimestamp = 0;
+			public const byte AverageDeviation = 1;
+			public const byte Average7DayDeviation = 2;
+			public const byte NightlyValue = 4;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public SkinTempOvernightMesg() : base(Profile.GetMesg(MesgNum.SkinTempOvernight))
-        {
-        }
+		#region Constructors
+		public SkinTempOvernightMesg() : base(Profile.GetMesg(MesgNum.SkinTempOvernight))
+		{
+		}
 
-        public SkinTempOvernightMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public SkinTempOvernightMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the LocalTimestamp field</summary>
-        /// <returns>Returns nullable uint representing the LocalTimestamp field</returns>
-        public uint? GetLocalTimestamp()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt32(val));
-            
-        }
+		///<summary>
+		/// Retrieves the LocalTimestamp field</summary>
+		/// <returns>Returns nullable uint representing the LocalTimestamp field</returns>
+		public uint? LocalTimestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set LocalTimestamp field</summary>
-        /// <param name="localTimestamp_">Nullable field value to be set</param>
-        public void SetLocalTimestamp(uint? localTimestamp_)
-        {
-            SetFieldValue(0, 0, localTimestamp_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the AverageDeviation field
-        /// Comment: The average overnight deviation from baseline temperature in degrees C</summary>
-        /// <returns>Returns nullable float representing the AverageDeviation field</returns>
-        public float? GetAverageDeviation()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToUInt32(val));
 
-            return (Convert.ToSingle(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set AverageDeviation field
-        /// Comment: The average overnight deviation from baseline temperature in degrees C</summary>
-        /// <param name="averageDeviation_">Nullable field value to be set</param>
-        public void SetAverageDeviation(float? averageDeviation_)
-        {
-            SetFieldValue(1, 0, averageDeviation_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Average7DayDeviation field
-        /// Comment: The average 7 day overnight deviation from baseline temperature in degrees C</summary>
-        /// <returns>Returns nullable float representing the Average7DayDeviation field</returns>
-        public float? GetAverage7DayDeviation()
-        {
-            Object val = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		///<summary>
+		/// Retrieves the AverageDeviation field
+		/// Comment: The average overnight deviation from baseline temperature in degrees C</summary>
+		/// <returns>Returns nullable float representing the AverageDeviation field</returns>
+		public float? AverageDeviation
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToSingle(val));
-            
-        }
+				return (Convert.ToSingle(val));
 
-        /// <summary>
-        /// Set Average7DayDeviation field
-        /// Comment: The average 7 day overnight deviation from baseline temperature in degrees C</summary>
-        /// <param name="average7DayDeviation_">Nullable field value to be set</param>
-        public void SetAverage7DayDeviation(float? average7DayDeviation_)
-        {
-            SetFieldValue(2, 0, average7DayDeviation_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the NightlyValue field
-        /// Comment: Final overnight temperature value</summary>
-        /// <returns>Returns nullable float representing the NightlyValue field</returns>
-        public float? GetNightlyValue()
-        {
-            Object val = GetFieldValue(4, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
+		///<summary>
+		/// Retrieves the Average7DayDeviation field
+		/// Comment: The average 7 day overnight deviation from baseline temperature in degrees C</summary>
+		/// <returns>Returns nullable float representing the Average7DayDeviation field</returns>
+		public float? Average7DayDeviation
+		{
+			get
+			{
+				Object val = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set NightlyValue field
-        /// Comment: Final overnight temperature value</summary>
-        /// <param name="nightlyValue_">Nullable field value to be set</param>
-        public void SetNightlyValue(float? nightlyValue_)
-        {
-            SetFieldValue(4, 0, nightlyValue_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+				return (Convert.ToSingle(val));
+
+			}
+			set
+			{
+				SetFieldValue(2, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the NightlyValue field
+		/// Comment: Final overnight temperature value</summary>
+		/// <returns>Returns nullable float representing the NightlyValue field</returns>
+		public float? NightlyValue
+		{
+			get
+			{
+				Object val = GetFieldValue(4, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
+
+				return (Convert.ToSingle(val));
+
+			}
+			set
+			{
+				SetFieldValue(4, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

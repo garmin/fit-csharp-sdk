@@ -83,8 +83,8 @@ namespace Dynastream.Fit
         /// </exception>
         public DeveloperFieldDefinition(FieldDescriptionMesg desc, DeveloperDataIdMesg devId, byte size)
         {
-            byte? fieldDefinitionNumber = desc.GetFieldDefinitionNumber();
-            byte? developerDataIndex = desc.GetDeveloperDataIndex();
+            byte? fieldDefinitionNumber = desc.FieldDefinitionNumber;
+            byte? developerDataIndex = desc.DeveloperDataIndex;
             if ((developerDataIndex != null) &&
                 (fieldDefinitionNumber != null))
             {

@@ -21,127 +21,122 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the HsaWristTemperatureData profile message.
-    /// </summary>
-    public class HsaWristTemperatureDataMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the HsaWristTemperatureData profile message.
+	/// </summary>
+	public class HsaWristTemperatureDataMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="HsaWristTemperatureDataMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte ProcessingInterval = 0;
-            public const byte Value = 1;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="HsaWristTemperatureDataMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte ProcessingInterval = 0;
+			public const byte Value = 1;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public HsaWristTemperatureDataMesg() : base(Profile.GetMesg(MesgNum.HsaWristTemperatureData))
-        {
-        }
+		#region Constructors
+		public HsaWristTemperatureDataMesg() : base(Profile.GetMesg(MesgNum.HsaWristTemperatureData))
+		{
+		}
 
-        public HsaWristTemperatureDataMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public HsaWristTemperatureDataMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field
-        /// Units: s</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field
+		/// Units: s</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field
-        /// Units: s</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the ProcessingInterval field
-        /// Units: s
-        /// Comment: Processing interval length in seconds</summary>
-        /// <returns>Returns nullable ushort representing the ProcessingInterval field</returns>
-        public ushort? GetProcessingInterval()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+		///<summary>
+		/// Retrieves the ProcessingInterval field
+		/// Units: s
+		/// Comment: Processing interval length in seconds</summary>
+		/// <returns>Returns nullable ushort representing the ProcessingInterval field</returns>
+		public ushort? ProcessingInterval
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set ProcessingInterval field
-        /// Units: s
-        /// Comment: Processing interval length in seconds</summary>
-        /// <param name="processingInterval_">Nullable field value to be set</param>
-        public void SetProcessingInterval(ushort? processingInterval_)
-        {
-            SetFieldValue(0, 0, processingInterval_, Fit.SubfieldIndexMainField);
-        }
-        
-        
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>returns number of elements in field Value</returns>
-        public int GetNumValue()
-        {
-            return GetNumFieldValues(1, Fit.SubfieldIndexMainField);
-        }
+				return (Convert.ToUInt16(val));
 
-        ///<summary>
-        /// Retrieves the Value field
-        /// Units: degC
-        /// Comment: Wrist temperature reading</summary>
-        /// <param name="index">0 based index of Value element to retrieve</param>
-        /// <returns>Returns nullable float representing the Value field</returns>
-        public float? GetValue(int index)
-        {
-            Object val = GetFieldValue(1, index, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
 
-        /// <summary>
-        /// Set Value field
-        /// Units: degC
-        /// Comment: Wrist temperature reading</summary>
-        /// <param name="index">0 based index of value</param>
-        /// <param name="value_">Nullable field value to be set</param>
-        public void SetValue(int index, float? value_)
-        {
-            SetFieldValue(1, index, value_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+		/// <summary>
+		///
+		/// </summary>
+		/// <returns>returns number of elements in field Value</returns>
+		public int GetNumValue()
+		{
+			return GetNumFieldValues(1, Fit.SubfieldIndexMainField);
+		}
+
+		///<summary>
+		/// Retrieves the Value field
+		/// Units: degC
+		/// Comment: Wrist temperature reading</summary>
+		/// <param name="index">0 based index of Value element to retrieve</param>
+		/// <returns>Returns nullable float representing the Value field</returns>
+		public float? GetValue(int index)
+		{
+			Object val = GetFieldValue(1, index, Fit.SubfieldIndexMainField);
+			if (val == null)
+			{
+				return null;
+			}
+
+			return (Convert.ToSingle(val));
+
+		}
+
+		/// <summary>
+		/// Set Value field
+		/// Units: degC
+		/// Comment: Wrist temperature reading</summary>
+		/// <param name="index">0 based index of value</param>
+		/// <param name="value_">Nullable field value to be set</param>
+		public void SetValue(int index, float? value_)
+		{
+			SetFieldValue(1, index, value_, Fit.SubfieldIndexMainField);
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

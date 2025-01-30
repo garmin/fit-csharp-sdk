@@ -47,7 +47,7 @@ namespace Dynastream.Fit
             {
                 if (m_definition.IsDefined)
                 {
-                    return m_definition.DeveloperIdMesg.GetApplicationVersion() ?? 0;
+                    return m_definition.DeveloperIdMesg.ApplicationVersion ?? 0;
                 }
 
                 return 0;
@@ -90,7 +90,7 @@ namespace Dynastream.Fit
             {
                 if (m_definition.IsDefined)
                 {
-                    return m_definition.DescriptionMesg.GetFitBaseTypeId() ?? Fit.UInt8;
+                    return m_definition.DescriptionMesg.FitBaseTypeId ?? Fit.UInt8;
                 }
 
                 return Fit.UInt8;
@@ -103,7 +103,7 @@ namespace Dynastream.Fit
             {
                 if (m_definition.IsDefined)
                 {
-                    return m_definition.DescriptionMesg.GetScale() ?? 1.0;
+                    return m_definition.DescriptionMesg.Scale ?? 1.0;
                 }
 
                 return 1.0;
@@ -116,7 +116,7 @@ namespace Dynastream.Fit
             {
                 if (m_definition.IsDefined)
                 {
-                    return m_definition.DescriptionMesg.GetOffset() ?? 0.0;
+                    return m_definition.DescriptionMesg.Offset ?? 0.0;
                 }
 
                 return 0.0;
@@ -145,7 +145,7 @@ namespace Dynastream.Fit
             {
                 if (m_definition.IsDefined)
                 {
-                    return m_definition.DescriptionMesg.GetNativeFieldNum() ?? Fit.FieldNumInvalid;
+                    return m_definition.DescriptionMesg.NativeFieldNum ?? Fit.FieldNumInvalid;
                 }
 
                 return Fit.FieldNumInvalid;

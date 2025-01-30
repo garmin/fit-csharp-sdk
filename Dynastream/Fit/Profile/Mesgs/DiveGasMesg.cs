@@ -21,147 +21,140 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the DiveGas profile message.
-    /// </summary>
-    public class DiveGasMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the DiveGas profile message.
+	/// </summary>
+	public class DiveGasMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="DiveGasMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte MessageIndex = 254;
-            public const byte HeliumContent = 0;
-            public const byte OxygenContent = 1;
-            public const byte Status = 2;
-            public const byte Mode = 3;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="DiveGasMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte MessageIndex = 254;
+			public const byte HeliumContent = 0;
+			public const byte OxygenContent = 1;
+			public const byte Status = 2;
+			public const byte Mode = 3;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public DiveGasMesg() : base(Profile.GetMesg(MesgNum.DiveGas))
-        {
-        }
+		#region Constructors
+		public DiveGasMesg() : base(Profile.GetMesg(MesgNum.DiveGas))
+		{
+		}
 
-        public DiveGasMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public DiveGasMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the MessageIndex field</summary>
-        /// <returns>Returns nullable ushort representing the MessageIndex field</returns>
-        public ushort? GetMessageIndex()
-        {
-            Object val = GetFieldValue(254, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the MessageIndex field</summary>
+		/// <returns>Returns nullable ushort representing the MessageIndex field</returns>
+		public ushort? MessageIndex
+		{
+			get
+			{
+				Object val = GetFieldValue(254, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return (Convert.ToUInt16(val));
-            
-        }
+				return (Convert.ToUInt16(val));
 
-        /// <summary>
-        /// Set MessageIndex field</summary>
-        /// <param name="messageIndex_">Nullable field value to be set</param>
-        public void SetMessageIndex(ushort? messageIndex_)
-        {
-            SetFieldValue(254, 0, messageIndex_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the HeliumContent field
-        /// Units: percent</summary>
-        /// <returns>Returns nullable byte representing the HeliumContent field</returns>
-        public byte? GetHeliumContent()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(254, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToByte(val));
-            
-        }
+		///<summary>
+		/// Retrieves the HeliumContent field
+		/// Units: percent</summary>
+		/// <returns>Returns nullable byte representing the HeliumContent field</returns>
+		public byte? HeliumContent
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set HeliumContent field
-        /// Units: percent</summary>
-        /// <param name="heliumContent_">Nullable field value to be set</param>
-        public void SetHeliumContent(byte? heliumContent_)
-        {
-            SetFieldValue(0, 0, heliumContent_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the OxygenContent field
-        /// Units: percent</summary>
-        /// <returns>Returns nullable byte representing the OxygenContent field</returns>
-        public byte? GetOxygenContent()
-        {
-            Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+				return (Convert.ToByte(val));
 
-            return (Convert.ToByte(val));
-            
-        }
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
 
-        /// <summary>
-        /// Set OxygenContent field
-        /// Units: percent</summary>
-        /// <param name="oxygenContent_">Nullable field value to be set</param>
-        public void SetOxygenContent(byte? oxygenContent_)
-        {
-            SetFieldValue(1, 0, oxygenContent_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Status field</summary>
-        /// <returns>Returns nullable DiveGasStatus enum representing the Status field</returns>
-        public DiveGasStatus? GetStatus()
-        {
-            object obj = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
-            DiveGasStatus? value = obj == null ? (DiveGasStatus?)null : (DiveGasStatus)obj;
-            return value;
-        }
+		///<summary>
+		/// Retrieves the OxygenContent field
+		/// Units: percent</summary>
+		/// <returns>Returns nullable byte representing the OxygenContent field</returns>
+		public byte? OxygenContent
+		{
+			get
+			{
+				Object val = GetFieldValue(1, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set Status field</summary>
-        /// <param name="status_">Nullable field value to be set</param>
-        public void SetStatus(DiveGasStatus? status_)
-        {
-            SetFieldValue(2, 0, status_, Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the Mode field</summary>
-        /// <returns>Returns nullable DiveGasMode enum representing the Mode field</returns>
-        public DiveGasMode? GetMode()
-        {
-            object obj = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
-            DiveGasMode? value = obj == null ? (DiveGasMode?)null : (DiveGasMode)obj;
-            return value;
-        }
+				return (Convert.ToByte(val));
 
-        /// <summary>
-        /// Set Mode field</summary>
-        /// <param name="mode_">Nullable field value to be set</param>
-        public void SetMode(DiveGasMode? mode_)
-        {
-            SetFieldValue(3, 0, mode_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+			}
+			set
+			{
+				SetFieldValue(1, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the Status field</summary>
+		/// <returns>Returns nullable DiveGasStatus enum representing the Status field</returns>
+		public DiveGasStatus? Status
+		{
+			get
+			{
+				object obj = GetFieldValue(2, 0, Fit.SubfieldIndexMainField);
+				DiveGasStatus? value = obj == null ? (DiveGasStatus?)null : (DiveGasStatus)obj;
+				return value;
+			}
+			set
+			{
+				SetFieldValue(2, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		///<summary>
+		/// Retrieves the Mode field</summary>
+		/// <returns>Returns nullable DiveGasMode enum representing the Mode field</returns>
+		public DiveGasMode? Mode
+		{
+			get
+			{
+				object obj = GetFieldValue(3, 0, Fit.SubfieldIndexMainField);
+				DiveGasMode? value = obj == null ? (DiveGasMode?)null : (DiveGasMode)obj;
+				return value;
+			}
+			set
+			{
+				SetFieldValue(3, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace

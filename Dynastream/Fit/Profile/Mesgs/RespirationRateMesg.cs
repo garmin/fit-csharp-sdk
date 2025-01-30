@@ -21,85 +21,81 @@ using System.Linq;
 
 namespace Dynastream.Fit
 {
-    /// <summary>
-    /// Implements the RespirationRate profile message.
-    /// </summary>
-    public class RespirationRateMesg : Mesg
-    {
-        #region Fields
-        #endregion
+	/// <summary>
+	/// Implements the RespirationRate profile message.
+	/// </summary>
+	public class RespirationRateMesg : Mesg
+	{
+		#region Fields
+		#endregion
 
-        /// <summary>
-        /// Field Numbers for <see cref="RespirationRateMesg"/>
-        /// </summary>
-        public sealed class FieldDefNum
-        {
-            public const byte Timestamp = 253;
-            public const byte RespirationRate = 0;
-            public const byte Invalid = Fit.FieldNumInvalid;
-        }
+		/// <summary>
+		/// Field Numbers for <see cref="RespirationRateMesg"/>
+		/// </summary>
+		public sealed class FieldDefNum
+		{
+			public const byte Timestamp = 253;
+			public const byte RespirationRate = 0;
+			public const byte Invalid = Fit.FieldNumInvalid;
+		}
 
-        #region Constructors
-        public RespirationRateMesg() : base(Profile.GetMesg(MesgNum.RespirationRate))
-        {
-        }
+		#region Constructors
+		public RespirationRateMesg() : base(Profile.GetMesg(MesgNum.RespirationRate))
+		{
+		}
 
-        public RespirationRateMesg(Mesg mesg) : base(mesg)
-        {
-        }
-        #endregion // Constructors
+		public RespirationRateMesg(Mesg mesg) : base(mesg)
+		{
+		}
+		#endregion // Constructors
 
-        #region Methods
-        ///<summary>
-        /// Retrieves the Timestamp field</summary>
-        /// <returns>Returns DateTime representing the Timestamp field</returns>
-        public DateTime GetTimestamp()
-        {
-            Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+		#region Methods
+		///<summary>
+		/// Retrieves the Timestamp field</summary>
+		/// <returns>Returns DateTime representing the Timestamp field</returns>
+		public DateTime Timestamp
+		{
+			get
+			{
+				Object val = GetFieldValue(253, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-            return TimestampToDateTime(Convert.ToUInt32(val));
-            
-        }
+				return TimestampToDateTime(Convert.ToUInt32(val));
 
-        /// <summary>
-        /// Set Timestamp field</summary>
-        /// <param name="timestamp_">Nullable field value to be set</param>
-        public void SetTimestamp(DateTime timestamp_)
-        {
-            SetFieldValue(253, 0, timestamp_.GetTimeStamp(), Fit.SubfieldIndexMainField);
-        }
-        
-        ///<summary>
-        /// Retrieves the RespirationRate field
-        /// Units: breaths/min
-        /// Comment: Breaths * 100 /min, -300 indicates invalid, -200 indicates large motion, -100 indicates off wrist</summary>
-        /// <returns>Returns nullable float representing the RespirationRate field</returns>
-        public float? GetRespirationRate()
-        {
-            Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
-            if(val == null)
-            {
-                return null;
-            }
+			}
+			set
+			{
+				SetFieldValue(253, 0, value.GetTimeStamp(), Fit.SubfieldIndexMainField);
+			}
+		}
 
-            return (Convert.ToSingle(val));
-            
-        }
+		///<summary>
+		/// Retrieves the RespirationRate field
+		/// Units: breaths/min
+		/// Comment: Breaths * 100 /min, -300 indicates invalid, -200 indicates large motion, -100 indicates off wrist</summary>
+		/// <returns>Returns nullable float representing the RespirationRate field</returns>
+		public float? RespirationRate
+		{
+			get
+			{
+				Object val = GetFieldValue(0, 0, Fit.SubfieldIndexMainField);
+				if (val == null)
+				{
+					return null;
+				}
 
-        /// <summary>
-        /// Set RespirationRate field
-        /// Units: breaths/min
-        /// Comment: Breaths * 100 /min, -300 indicates invalid, -200 indicates large motion, -100 indicates off wrist</summary>
-        /// <param name="respirationRate_">Nullable field value to be set</param>
-        public void SetRespirationRate(float? respirationRate_)
-        {
-            SetFieldValue(0, 0, respirationRate_, Fit.SubfieldIndexMainField);
-        }
-        
-        #endregion // Methods
-    } // Class
+				return (Convert.ToSingle(val));
+
+			}
+			set
+			{
+				SetFieldValue(0, 0, value, Fit.SubfieldIndexMainField);
+			}
+		}
+
+		#endregion // Methods
+	} // Class
 } // namespace
