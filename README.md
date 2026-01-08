@@ -23,6 +23,5 @@ The FIT C# SDK contains example code for encoding FIT Activity files. See the [E
 
 ### Encoding a Course File
 The FIT C# SDK contains example code for encoding FIT Course files. See the [Encoding FIT Course Files](https://developer.garmin.com/fit/cookbook/encoding-course-files/) recipe for details on encoding FIT Course files.
-
 ### Encoding a Workout File
 The FIT C# SDK contains example code for encoding FIT Workout files. See the [Encoding FIT Workout Files](https://developer.garmin.com/fit/cookbook/encoding-workout-files/) recipe for details on encoding FIT Workout files.
