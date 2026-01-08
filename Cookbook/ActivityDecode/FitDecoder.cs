@@ -65,17 +65,17 @@ public class FitDecoder
 
             return readOK;
         }
-        catch (FileTypeException)
+        catch (FileTypeException ex)
         {
-            throw;
+            throw (ex);
         }
-        catch (FitException)
+        catch (FitException ex)
         {
-            throw;
+            throw (ex);
         }
-        catch (System.Exception)
+        catch (System.Exception ex)
         {
-            throw;
+            throw (ex);
         }
         finally
         {
