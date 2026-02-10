@@ -1,6 +1,0 @@
-C:\jenkins\workspace\Rel-Fit_production_release_21.xx\cs\examples\FitPortable\obj\Release\FitPortable.csprojAssemblyReference.cache
-C:\jenkins\workspace\Rel-Fit_production_release_21.xx\cs\examples\FitPortable\obj\Release\FitPortable.csproj.CoreCompileInputs.cache
-C:\jenkins\workspace\Rel-Fit_production_release_21.xx\cs\examples\FitPortable\obj\Release\Dynastream.Fit.Portable.dll
-C:\jenkins\workspace\Rel-Fit_production_release_21.xx\cs\examples\FitPortable\obj\Release\Dynastream.Fit.Portable.pdb
-C:\jenkins\workspace\Rel-Fit_production_release_21.xx\cs\Dynastream.Fit.Portable.dll
-C:\jenkins\workspace\Rel-Fit_production_release_21.xx\cs\Dynastream.Fit.Portable.pdb
