@@ -6,7 +6,7 @@ The FIT SDK documentation is available at [https://developer.garmin.com/fit](htt
 Share your knowledge, ask questions, and get the latest FIT SDK news in the [FIT SDK Developer Forum](https://forums.garmin.com/developer/)
 
 ## Install
-The latest version of the SDK can be installed from [NuGet](https://www.nuget.org/packages/Garmin.FIT.Sdk)
+The latest version of the SDK can be installed from [NuGet](https://www.nuget.org/packages/Garmin.FIT.Sdk).
 
 ```
 dotnet add package Garmin.FIT.Sdk
